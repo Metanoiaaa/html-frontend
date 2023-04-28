@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Toevoegen van gebruikers</title>
+  </head>
+  <body>
+    <form id="form" onsubmit="createNewUser(); return false;">
+      <label for="firstname">Voornaam:</label>
+      <input type="text" id="firstname" name="firstname"><br><br>
+      
+      <label for="lastname">Achternaam:</label>
+      <input type="text" id="lastname" name="lastname"><br><br>
+      
+      <label for="username">Gebruikersnaam:</label>
+      <input type="text" id="username" name="username"><br><br>
+      
+      <label for="password">Wachtwoord:</label>
+      <input type="password" id="password" name="password"><br><br>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br><br>
+      
+      <label for="dateofbirth">Geboortedatum:</label>
+      <input type="date" id="dateofbirth" name="dateofbirth"><br><br>
+      
+      <label for="uploads">Uploads:</label>
+      <input type="number" id="uploads" name="uploads"><br><br>
+      
+      <label for="bio">Bio:</label>
+      <input type="text" id="bio" name="bio"><br><br>
+      
+      <label for="datecreate">Datum aanmaak:</label>
+      <input type="date" id="datecreate" name="datecreate"><br><br>
+      
+      <label for="profilepicture">Profielafbeelding:</label>
+      <input type="text" id="profilepicture" name="profilepicture"><br><br>
+      
+      <button type="submit">Opslaan</button>
+    </form>
+    <button onclick="toon_alles()">Toon iedereen</button>
+    <div id="divje"></div>
+    <button onclick="toon_allespython()">Toon iedereen python</button>
+    <div id="divjepython"></div>
+    <script>
+
+        function toon_alles() {
+          fetch("https://localhost:7042/api/User")
+          .then(kukeleku => kukeleku.json()) 
+          .then(d => abc(d))
+        }
+
+        function abc(data) {
+          
+          for (let i = 0; i < data.length; i++){
+            document.getElementById("divje").innerHTML += data[i].firstname;
+            document.getElementById("divje").innerHTML += data[i].lastname +"<br>";
+          }
+        }
+
+        
+        function toon_allespython() {
+          fetch("http://127.0.0.1:5000/recipes")
+          .then(kukeleku => kukeleku.json()) 
+          .then(d => def(d))
+        }
+
+        function def(data) {
+          
+          
+            document.getElementById("divjepython").innerHTML = data.recipe_title[0];
+        
+          
+        }
+        function createNewUser() {
+
+          let FirstnameInvoer = document.getElementById('firstname').value;
+          let LastnameInvoer = document.getElementById('lastname').value;
+          let UsernameInvoer = document.getElementById('username').value;
+          let PasswordInvoer = document.getElementById('password').value;
+          let EmailInvoer = document.getElementById('email').value;
+          let DateofBirthInvoer = document.getElementById('dateofbirth').value;
+          let UploadsInvoer = document.getElementById('uploads').value;
+          let BioInvoer = document.getElementById('bio').value;
+          let DateCreateInvoer = document.getElementById('datecreate').value;
+          let ProfilePictureInvoer = document.getElementById('profilepicture').value;
+
+          let NewUser = {
+          Firstname: FirstnameInvoer,
+          Lastname: LastnameInvoer,
+          Username: UsernameInvoer,
+          Email: EmailInvoer,
+          DateofBirth: DateofBirthInvoer,
+          Uploads: UploadsInvoer,
+          Bio: BioInvoer,
+          DateCreate: DateCreateInvoer,
+          ProfilePicture: ProfilePictureInvoer,
+          Password: PasswordInvoer,
+        };
+        
+        
+       
+
+        fetch('https://localhost:7042/api/User', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(NewUser),
+        })
+          .then((response) => {
+            alert("User Toegevoegd");
+            
+            loadIngredients();
+          })
+          //.catch((error) => {
+          //  alert("Er is iets fouts gegaan");
+         // });
+      }
+     
+    </script>
+  </body>
+</html>
+
