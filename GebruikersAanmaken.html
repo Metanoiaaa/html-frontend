@@ -38,8 +38,40 @@
       
       <button type="submit">Opslaan</button>
     </form>
-
+    <button onclick="toon_alles()">Toon iedereen</button>
+    <div id="divje"></div>
+    <button onclick="toon_allespython()">Toon iedereen python</button>
+    <div id="divjepython"></div>
     <script>
+
+        function toon_alles() {
+          fetch("https://localhost:7042/api/User")
+          .then(kukeleku => kukeleku.json()) 
+          .then(d => abc(d))
+        }
+
+        function abc(data) {
+          
+          for (let i = 0; i < data.length; i++){
+            document.getElementById("divje").innerHTML += data[i].firstname;
+            document.getElementById("divje").innerHTML += data[i].lastname +"<br>";
+          }
+        }
+
+        
+        function toon_allespython() {
+          fetch("http://127.0.0.1:5000/recipes")
+          .then(kukeleku => kukeleku.json()) 
+          .then(d => def(d))
+        }
+
+        function def(data) {
+          
+          
+            document.getElementById("divjepython").innerHTML = data.recipe_title[0];
+        
+          
+        }
         function createNewUser() {
 
           let FirstnameInvoer = document.getElementById('firstname').value;
@@ -66,6 +98,7 @@
           Password: PasswordInvoer,
         };
         
+        
        
 
         fetch('https://localhost:7042/api/User', {
@@ -77,12 +110,12 @@
         })
           .then((response) => {
             alert("User Toegevoegd");
-
+            
             loadIngredients();
           })
-          .catch((error) => {
-            alert("Er is iets fouts gegaan");
-          });
+          //.catch((error) => {
+          //  alert("Er is iets fouts gegaan");
+         // });
       }
      
     </script>
