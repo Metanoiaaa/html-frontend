@@ -38,10 +38,22 @@
       
       <button type="submit">Opslaan</button>
     </form>
+
     <button onclick="toon_alles()">Toon iedereen</button>
-    <div id="divje"></div>
+
+    <div id="LeesGebruikerdiv"></div>
+
     <button onclick="toon_allespython()">Toon iedereen python</button>
+
     <div id="divjepython"></div>
+    
+    <div class = "delete Users"> 
+    <label for="userId">userId:</label>
+    <input type="text" id="userId" name="userId"><br><br>
+    <button onclick="verwijderGebruiker()">Delete User</button>
+    </div>
+   
+
     <script>
 
         function toon_alles() {
@@ -53,8 +65,15 @@
         function abc(data) {
           
           for (let i = 0; i < data.length; i++){
-            document.getElementById("divje").innerHTML += data[i].firstname;
-            document.getElementById("divje").innerHTML += data[i].lastname +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].firstname +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].lastname +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].username +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].email +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].dateofBirth +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].uploads +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].bio +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].dateCreate +"<br>";
+            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].profilePicture +"<br>" +"\n";
           }
         }
 
@@ -96,26 +115,51 @@
           DateCreate: DateCreateInvoer,
           ProfilePicture: ProfilePictureInvoer,
           Password: PasswordInvoer,
-        };
+          };
         
         
        
 
-        fetch('https://localhost:7042/api/User', {
-          method: "POST",
+          fetch('https://localhost:7042/api/User', {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(NewUser),
+          })
+            .then((response) => {
+              alert("User Toegevoegd");
+              
+              loadIngredients();
+            })
+            //.catch((error) => {
+            //  alert("Er is iets fouts gegaan");
+          // });
+        }
+
+        function verwijderGebruiker() {
+        // Bouw de SQL-query
+        var User_ID = document.getElementById("userId").value;
+        var query = "DELETE FROM table_name WHERE id = " + User_ID;
+
+        // Verwijder de gebruiker met behulp van Fetch API
+        fetch('https://localhost:7042/api/User/' + User_ID, {
+          method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(NewUser),
+          body: JSON.stringify({ query: query })
         })
-          .then((response) => {
-            alert("User Toegevoegd");
-            
-            loadIngredients();
-          })
-          //.catch((error) => {
-          //  alert("Er is iets fouts gegaan");
-         // });
+        .then(response => { 
+          if (response.ok) {
+            alert("Gebruiker verwijderd");
+          } else {
+            alert("Er is een fout opgetreden bij het verwijderen van de gebruiker");
+          }
+        })
+        .catch(error => {
+          console.error('Fout bij het verwijderen van de gebruiker:', error);
+        });
       }
      
     </script>
