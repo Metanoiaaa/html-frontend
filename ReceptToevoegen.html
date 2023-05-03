@@ -15,6 +15,16 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Duur</th>
+                <th>Stappen</th>
+                <th>Rating</th>
+                <th>Intro</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody id="recepts-table">
@@ -138,6 +148,23 @@
                 dateEdited: dateEditedInvoer
             }
 
+            newRecept=`{
+  "receptName": "6",
+  "uploaderName": "6",
+  "cookingTime": 6,
+  "cookingDescription": "6",
+  "utensilsID":6,
+  "bbqID": 6,
+  "mealType": 6,
+  "isVegan": true,
+  "rating": 6,
+  "recipePhoto": "string",
+  "intro": "string",
+  "diet": 6,
+  "dateCreate": "string",
+  "dateEdited": "string"
+}
+`
             fetch("https://localhost:7042/api/Recepten", {
                 method: 'POST',
                 headers: {
