@@ -13,18 +13,21 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Duur</th>
-                <th>Stappen</th>
-                <th>Rating</th>
-                <th>Intro</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>id</th>
+                <th>receptName</th>
+                <th>uploaderName</th>
+                <th>cookingTime</th>
+                <th>cookingDescription</th>
+                <th>utensilsID</th>
+                <th>bbqID</th>
+                <th>mealType</th>
+                
+                <th>rating</th>
+                <th>recipePhoto</th>
+                <th>intro</th>
+
+                <th>dateCreate</th>
+                <th>dateEdited</th>
             </tr>
         </thead>
         <tbody id="recepts-table">
@@ -53,11 +56,11 @@
       </div>
       <div class="mb-3">
         <label for="amount-input" class="form-label">Introductie</label>
-        <input type="number" class="form-control" id="intro-input" placeholder="Vul hier de introductie in.">
+        <input type="text" class="form-control" id="intro-input" placeholder="Vul hier de introductie in.">
       </div>
       <div class="mb-3">
         <label for="amount-input" class="form-label">Instructies</label>
-        <input type="number" class="form-control" id="coockingdescription-input" placeholder="Vul hier de instructies in.">
+        <input type="text" class="form-control" id="coockingdescription-input" placeholder="Vul hier de instructies in.">
       </div>
       <div class="mb-3">
         <label for="amount-input" class="form-label">Benodigdheden</label>
@@ -65,26 +68,29 @@
       </div>
       <div class="mb-3">
         <label for="amount-input" class="form-label">Geupload door</label>
-        <input type="number" class="form-control" id="uploadername-input" placeholder="Vul hier de uploader in.">
+        <input type="text" class="form-control" id="uploadername-input" placeholder="Vul hier de uploader in.">
       </div>
       <div class="mb-3">
         <label for="amount-input" class="form-label">Aangemaakt op</label>
-        <input type="number" class="form-control" id="datecreate-input" placeholder="Vul hier de aanmaakdatum in.">
+        <input type="text" class="form-control" id="datecreate-input" placeholder="Vul hier de aanmaakdatum in.">
       </div>
       <div class="mb-3">
         <label for="amount-input" class="form-label">Gewijzigd op</label>
-        <input type="number" class="form-control" id="dateedited-input" placeholder="Vul hier de wijzingsdatum in.">
+        <input type="text" class="form-control" id="dateedited-input" placeholder="Vul hier de wijzingsdatum in.">
       </div>
       <div class="mb-3">
         <label for="amount-input" class="form-label">Foto recept</label>
-        <input type="number" class="form-control" id="receptphoto-input" placeholder="Voer hier de url naar de foto in.">
+        <input type="text" class="form-control" id="recipephoto-input" placeholder="Voer hier de url naar de foto in.">
       </div>
 <button type="button" class="btn btn-success" onclick="createRecept()">Opslaan</button>
 
 <button onclick="loadRecepts()">Toon recepten</button>
 <div id="divrecept"></div>
-<button onclick="toon_allereceptenpython()">Toon recepten python</button>
-<div id="divreceptpython"></div>
+
+<br>
+
+<button type="button" class="btn btn-success" onclick="toon_allereceptenpython()">Toon recepten python</button>
+<div id="divjepython"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>       
     <script>
@@ -103,73 +109,77 @@
             document.getElementById("divrecept").innerHTML += data[i].cookingtime +"<br>";
           }
         }
-
         
-        function toon_allereceptenpython()
-        {
-          fetch("https://localhost:7042/api/Recepten")
-          .then(pullrecepts => pullrecepts.json()) 
-          .then(r => def(r))
+        function toon_allespython() {
+          fetch("http://127.0.0.1:5000/recipes")
+          .then(kukeleku => kukeleku.json()) 
+          .then(d => def(d))
         }
 
-        function def(data)
-        {
-            document.getElementById("divreceptpython").innerHTML = data.recept_title[0];          
+        function def(data) {
+          
+          
+            document.getElementById("divjepython").innerHTML = data.recipe_title[0];
+    
+       
         }
 
        function createRecept() {
             // Invoer velden uitlezen
             let nameInvoer = document.getElementById('name-input').value;
-            let cookingTimeInvoer = document.getElementById('cookingtime-input').checked;
-            let cookingDescriptionInvoer = document.getElementById('coockingdescription-input').checked; 
-            let mealTypeInvoer = document.getElementById('mealtype-input').checked; 
-            let introInvoer = document.getElementById('intro-input').checked; 
-            let receptPhotoInvoer = document.getElementById('receptphoto-input').checked; 
-            let bbqIDInvoer = document.getElementById('bbqid-input').checked; 
-            let utensilsIDInvoer = document.getElementById('utensilsid-input').checked;
-            let ratingInvoer = document.getElementById('rating-input').checked; 
-            let uploaderNameInvoer = document.getElementById('uploadername-input').checked; 
-            let dateCreateInvoer = document.getElementById('datecreate-input').checked; 
-            let dateEditedInvoer = document.getElementById('dateedited-input').checked;  
-
+            let cookingTimeInvoer = document.getElementById('cookingtime-input').value;
+            let cookingDescriptionInvoer = document.getElementById('coockingdescription-input').value; 
+            let mealTypeInvoer = document.getElementById('mealtype-input').value; 
+            let introInvoer = document.getElementById('intro-input').value; 
+            let recipePhotoInvoer = document.getElementById('recipephoto-input').value; 
+            let bbqIDInvoer = document.getElementById('bbqid-input').value; 
+            let utensilsIDInvoer = document.getElementById('utensilsid-input').value;
+            let ratingInvoer = document.getElementById('rating-input').value; 
+            let uploaderNameInvoer = document.getElementById('uploadername-input').value; 
+            let dateCreateInvoer = document.getElementById('datecreate-input').value; 
+            let dateEditedInvoer = document.getElementById('dateedited-input').value;  
 
             // Maak een recept object in javascript
             let newRecept = {
-                name: nameInvoer,
+                receptName: nameInvoer,
                 cookingTime: cookingTimeInvoer,
                 cookingDescription: cookingDescriptionInvoer,
                 mealType: mealTypeInvoer,
                 intro: introInvoer,
-                receptPhoto: receptPhotoInvoer,
+                recipePhoto: recipePhotoInvoer,
                 bbqID: bbqIDInvoer,
                 utensilsID: utensilsIDInvoer,
                 uploaderName: uploaderNameInvoer,
                 dateCreate: dateCreateInvoer,
                 dateEdited: dateEditedInvoer
             }
-
+/*
             newRecept=`{
-  "receptName": "6",
-  "uploaderName": "6",
-  "cookingTime": 6,
-  "cookingDescription": "6",
-  "utensilsID":6,
-  "bbqID": 6,
-  "mealType": 6,
+  "receptName": "1",
+  "uploaderName": "1",
+  "cookingTime": 1,
+  "cookingDescription": "1",
+  "utensilsID":1,
+  "bbqID": 1,
+  "mealType": 1,
   "isVegan": true,
-  "rating": 6,
-  "recipePhoto": "string",
-  "intro": "string",
-  "diet": 6,
-  "dateCreate": "string",
-  "dateEdited": "string"
+  "rating": 1,
+  "recipePhoto": "1",
+  "intro": "1",
+  "diet": 1,
+  "dateCreate": "1",
+  "dateEdited": "1"
 }
 `
+*/
+console.log(JSON.stringify(newRecept));
+
             fetch("https://localhost:7042/api/Recepten", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
+                
                 body: JSON.stringify(newRecept)
             })
             .then(response => {
@@ -193,15 +203,18 @@
                     tableHtml += `
                         <tr>
                             <td>${recept.id}</td>
-                            <td>${recept.name}</td>
+                            <td>${recept.receptName}</td>
+                            <td width=15%>${recept.uploaderName}</td>
                             <td>${recept.cookingTime}</td>
-                            <td>${recept.cookingDescription}</td>
-                            <td>${recept.mealType}</td>
-                            <td>${recept.intro}</td>
-                            <td>${recept.receptPhoto}</td>
-                            <td>${recept.bbqID}</td>
+                            <td width=15%>${recept.cookingDescription}</td>
                             <td>${recept.utensilsID}</td>
-                            <td>${recept.uploaderName}</td>
+                            <td>${recept.bbqID}</td>
+                            <td>${recept.mealType}</td>
+                            <td>${recept.rating}</td>
+
+                            <td>${recept.recipePhoto}</td>
+                            <td>${recept.intro}</td>
+
                             <td>${recept.dateCreate}</td>
                             <td>${recept.dateEdited}</td>
                         </tr>
