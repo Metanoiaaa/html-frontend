@@ -7,6 +7,122 @@
     <title>Document</title>
   </head>
   <body>
-    gebruikers pagina
+
+
+    
+    
+    
+    <div class = "delete Users"> 
+    <label for="userId">userId:</label>
+    <input type="text" id="userId" name="userId"><br><br>
+    <button onclick="showUpdateUser()">Update user info</button>
+    </div>
+    <div id="UpdateUserTable" style="display: none;">
+
+      <label for="firstName">First name:</label>
+      <input type="text" id="firstname" name="firstname"><br><br>
+
+      <label for="lastName">Last name:</label>
+      <input type="text" id="lastname" name="lastname"><br><br>
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username"><br><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password"><br><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email"><br><br>
+
+      <label for="dateOfBirth">Date of birth:</label>
+      <input type="date" id="dateofBirth" name="dateofBirth"><br><br>
+
+      <label for="uploads">Uploads:</label>
+      <input type="text" id="uploads" name="uploads"><br><br>
+
+      <label for="bio">Bio:</label>
+      <textarea id="bio" name="bio"></textarea><br><br>
+
+      <label for="dateCreate">Date created:</label>
+      <input type="date" id="dateCreate" name="dateCreate"><br><br>
+
+      <label for="profilePicture">Profile picture:</label>
+      <input type="text" id="profilePicture" name="profilePicture"><br><br>
+
+      <button onclick="updateUser()">Update user</button>
+    </div>
+    
+
+  <script>
+    function showUpdateUser() {
+      // Haal het formulier op
+      var UserForm = document.getElementById("UpdateUserTable");
+      UpdateUserTable.style.display = "block";
+    }
+
+
+    function updateUser() {
+  // Haal de gegevens van de gebruiker op uit de inputvelden
+  var userId = document.getElementById("userId").value;
+  var NewUser = {};
+
+  // Check welke velden zijn ingevuld en voeg deze toe aan het veld-object
+  if (document.getElementById("firstname").value.trim() !== "") {
+    NewUser.firstname = document.getElementById("firstname").value;
+  }
+  if (document.getElementById("lastname").value.trim() !== "") {
+    NewUser.lastname = document.getElementById("lastname").value;
+  }
+  if (document.getElementById("username").value.trim() !== "") {
+    NewUser.username = document.getElementById("username").value;
+  }
+  if (document.getElementById("password").value.trim() !== "") {
+    NewUser.password = document.getElementById("password").value;
+  }
+  if (document.getElementById("email").value.trim() !== "") {
+    NewUser.email = document.getElementById("email").value;
+  }
+  if (document.getElementById("dateofBirth").value.trim() !== "") {
+    NewUser.dateOfBirth = document.getElementById("dateofBirth").value;
+  }
+  if (document.getElementById("uploads").value.trim() !== "") {
+    NewUser.uploads = document.getElementById("uploads").value;
+  }
+  if (document.getElementById("bio").value.trim() !== "") {
+    NewUser.bio = document.getElementById("bio").value;
+  }
+  if (document.getElementById("dateCreate").value.trim() !== "") {
+    NewUser.dateCreate = document.getElementById("dateCreate").value;
+  }
+  if (document.getElementById("profilePicture").value.trim() !== "") {
+    NewUser.profilePicture = document.getElementById("profilePicture").value;
+  }
+
+
+ 
+  console.log(JSON.stringify(NewUser))
+
+  // Stuur de gegevens naar de backend via de Fetch API
+  fetch('https://localhost:7042/api/User/' + userId, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(NewUser)
+    
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("Gebruikersgegevens bijgewerkt");
+    } else {
+      alert("Er is een fout opgetreden bij het bijwerken van de gebruikersgegevens");
+    }
+  })
+  .catch(error => {
+    console.error('Fout bij het bijwerken van de gebruikersgegevens:', error);
+  });
+}
+
+ </script>   
   </body>
 </html>
