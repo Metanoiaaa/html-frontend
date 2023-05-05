@@ -43,9 +43,9 @@
 
     <div id="LeesGebruikerdiv"></div>
 
-    <button onclick="toon_allespython()">Toon iedereen python</button>
+   
 
-    <div id="divjepython"></div>
+
     
     <div class = "delete Users"> 
     <label for="userId">userId:</label>
@@ -102,7 +102,7 @@
           let UploadsInvoer = document.getElementById('uploads').value;
           let BioInvoer = document.getElementById('bio').value;
           let DateCreateInvoer = document.getElementById('datecreate').value;
-          let ProfilePictureInvoer = document.getElementById('profilepicture').value;
+          let ProfilePictureInvoer = document.getElementById('profilepicture').value; 
 
           let NewUser = {
           Firstname: FirstnameInvoer,
@@ -130,7 +130,7 @@
             .then((response) => {
               alert("User Toegevoegd");
               
-              loadIngredients();
+            
             })
             //.catch((error) => {
             //  alert("Er is iets fouts gegaan");
@@ -161,6 +161,8 @@
           console.error('Fout bij het verwijderen van de gebruiker:', error);
         });
       }
+
+
      
     </script>
   </body>
