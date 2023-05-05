@@ -85,7 +85,7 @@
 <button type="button" class="btn btn-success" onclick="createRecept()">Opslaan</button>
 
 <button onclick="loadRecepts()">Toon recepten</button>
-<div id="divrecept"></div>
+<div id="divjepython"></div>
 
 <br>
 
@@ -96,7 +96,7 @@
     <script>
         function toon_allerecepten()
         {
-          fetch("https://localhost:7042/api/Recepten")
+          fetch("http://127.0.0.1:5000/recipes")
           .then(pullrecepts => pullrecepts.json()) 
           .then(r => abc(r))
         }
@@ -105,12 +105,12 @@
 
         {         
           for (let i = 0; i < data.length; i++){
-            document.getElementById("divrecept").innerHTML += data[i].Receptname;
-            document.getElementById("divrecept").innerHTML += data[i].cookingtime +"<br>";
+            document.getElementById("divjepython").innerHTML += data[i].Receptname;
+            document.getElementById("divjepython").innerHTML += data[i].cookingtime +"<br>";
           }
         }
         
-        function toon_allespython() {
+        function toon_allereceptenpython() {
           fetch("http://127.0.0.1:5000/recipes")
           .then(kukeleku => kukeleku.json()) 
           .then(d => def(d))
@@ -120,7 +120,8 @@
           
           
             document.getElementById("divjepython").innerHTML = data.recipe_title[0];
-    
+            
+            //console.log(data);
        
         }
 
@@ -174,7 +175,7 @@
 */
 console.log(JSON.stringify(newRecept));
 
-            fetch("https://localhost:7042/api/Recepten", {
+            fetch("http://127.0.0.1:5000/recipes", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -192,7 +193,7 @@ console.log(JSON.stringify(newRecept));
         }
        
        function loadRecepts() {
-            fetch('https://localhost:7042/api/Recepten')
+            fetch('http://127.0.0.1:5000/recipes')
             .then(res => res.json()) // = anonymous function
             .then(data => {
                 console.log(data);
