@@ -14,73 +14,62 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>receptName</th>
-                <th>uploaderName</th>
-                <th>cookingTime</th>
-                <th>cookingDescription</th>
-                <th>utensilsID</th>
-                <th>bbqID</th>
-                <th>mealType</th>
+                <th>recipeTitle</th>
+                <th>userId</th>
+                <th>prepTime</th>
+                <th>prepText</th>
+                <th>cookAttireId</th>
+                <th>bbqId</th>
+                <!-- <th>mealType</th> -->
                 <th>rating</th>
-                <th>recipePhoto</th>
+                <th>foto</th>
                 <th>intro</th>
                 <th>dateCreate</th>
-                <th>dateEdited</th>
+                <!-- <th>dateEdited</th> -->
             </tr>
         </thead>
         <tbody id="recepts-table">
         </tbody>  
     </table>
 
-    <div class="mb-3">
-        <label for="name-input" class="form-label">Naam recept</label>
-        <input type="text" class="form-control" id="name-input" placeholder="Vul hier een receptnaam in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Kooktijd</label>
-        <input type="number" class="form-control" id="cookingtime-input" placeholder="Vul hier de kooktijd in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Rating</label>
-        <input type="number" class="form-control" id="rating-input" placeholder="Vul hier de rating in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Type maaltijd</label>
-        <input type="number" class="form-control" id="mealtype-input" placeholder="Vul hier het type maaltijd in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Type BBQ</label>
-        <input type="number" class="form-control" id="bbqid-input" placeholder="Vul hier het type barbecue in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Introductie</label>
-        <input type="text" class="form-control" id="intro-input" placeholder="Vul hier de introductie in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Instructies</label>
-        <input type="text" class="form-control" id="coockingdescription-input" placeholder="Vul hier de instructies in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Benodigdheden</label>
-        <input type="number" class="form-control" id="utensilsid-input" placeholder="Vul hier de benodigdheden in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Geupload door</label>
-        <input type="text" class="form-control" id="uploadername-input" placeholder="Vul hier de uploader in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Aangemaakt op</label>
-        <input type="text" class="form-control" id="datecreate-input" placeholder="Vul hier de aanmaakdatum in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Gewijzigd op</label>
-        <input type="text" class="form-control" id="dateedited-input" placeholder="Vul hier de wijzingsdatum in.">
-      </div>
-      <div class="mb-3">
-        <label for="amount-input" class="form-label">Foto recept</label>
-        <input type="text" class="form-control" id="recipephoto-input" placeholder="Voer hier de url naar de foto in.">
-      </div>
-<button type="button" class="btn btn-success" onclick="createRecept()">Opslaan</button>
+    <div id="UpdateRecipeTable">
+        <label for="recipeTitle-input" class="form-label">Naam recept</label>
+        <input type="text" class="form-control" id="recipeTitle-input" placeholder="Vul hier een receptnaam in."><br>
+  
+        <label for="prepTime-input" class="form-label">Kooktijd</label>
+        <input type="number" class="form-control" id="prepTime-input" placeholder="Vul hier de kooktijd in."><br>
+  
+        <label for="rating-input" class="form-label">Rating</label>
+        <input type="number" class="form-control" id="rating-input" placeholder="Vul hier de rating in."><br>
+  
+        <!-- <label for="mealtype-input" class="form-label">Type maaltijd</label>
+        <input type="number" class="form-control" id="mealtype-input" placeholder="Vul hier het type maaltijd in."><br> -->
+  
+        <label for="bbqId-input" class="form-label">Type BBQ</label>
+        <input type="number" class="form-control" id="bbqId-input" placeholder="Vul hier het type barbecue in."><br>
+  
+        <label for="intro-input" class="form-label">Introductie</label>
+        <input type="text" class="form-control" id="intro-input" placeholder="Vul hier de introductie in."><br>
+  
+        <label for="prepText-input" class="form-label">Instructies</label>
+        <input type="text" class="form-control" id="prepText-input" placeholder="Vul hier de instructies in."><br>
+  
+        <label for="cookAttireId-input" class="form-label">Benodigdheden</label>
+        <input type="number" class="form-control" id="cookAttireId-input" placeholder="Vul hier de benodigdheden in."><br>
+  
+        <label for="userId-input" class="form-label">Geupload door</label>
+        <input type="text" class="form-control" id="userId-input" placeholder="Vul hier de uploader in."><br>
+  
+        <label for="dateCreate-input" class="form-label">Aangemaakt op</label>
+        <input type="text" class="form-control" id="dateCreate-input" placeholder="Vul hier de aanmaakdatum in."><br>
+  
+        <!-- <label for="dateedited-input" class="form-label">Gewijzigd op</label>
+        <input type="text" class="form-control" id="dateedited-input" placeholder="Vul hier de wijzingsdatum in."><br> -->
+  
+        <label for="foto-input" class="form-label">Foto recept</label>
+        <input type="text" class="form-control" id="foto-input" placeholder="Voer hier de url naar de foto in."><br>
+
+        <button type="button" class="btn btn-success" onclick="createRecept()">Opslaan</button>
 
 <button onclick="loadRecepts()">Toon recepten</button>
 <div id="divjepython"></div>
@@ -103,8 +92,8 @@
 
         {         
           for (let i = 0; i < data.length; i++){
-            document.getElementById("divjepython").innerHTML += data[i].Receptname;
-            document.getElementById("divjepython").innerHTML += data[i].cookingtime +"<br>";
+            document.getElementById("divjepython").innerHTML += data[i].recipeID;
+            document.getElementById("divjepython").innerHTML += data[i].prepTime +"<br>";
           }
         }
         
@@ -124,45 +113,45 @@
 
        function createRecept() {
             // Invoer velden uitlezen
-            let nameInvoer = document.getElementById('name-input').value;
-            let cookingTimeInvoer = document.getElementById('cookingtime-input').value;
-            let cookingDescriptionInvoer = document.getElementById('coockingdescription-input').value; 
-            let mealTypeInvoer = document.getElementById('mealtype-input').value; 
+            let nameInvoer = document.getElementById('recipeTitle-input').value;
+            let prepTimeInvoer = document.getElementById('prepTime-input').value;
+            let prepTextInvoer = document.getElementById('prepText-input').value; 
+            //let mealTypeInvoer = document.getElementById('mealtype-input').value; 
             let introInvoer = document.getElementById('intro-input').value; 
-            let recipePhotoInvoer = document.getElementById('recipephoto-input').value; 
-            let bbqIDInvoer = document.getElementById('bbqid-input').value; 
-            let utensilsIDInvoer = document.getElementById('utensilsid-input').value;
+            let fotoInvoer = document.getElementById('foto-input').value; 
+            let bbqIdInvoer = document.getElementById('bbqId-input').value; 
+            let cookAttireIdInvoer = document.getElementById('cookAttireId-input').value;
             let ratingInvoer = document.getElementById('rating-input').value; 
-            let uploaderNameInvoer = document.getElementById('uploadername-input').value; 
-            let dateCreateInvoer = document.getElementById('datecreate-input').value; 
-            let dateEditedInvoer = document.getElementById('dateedited-input').value;  
+            let userIdInvoer = document.getElementById('userId-input').value; 
+            let dateCreateInvoer = document.getElementById('dateCreate-input').value; 
+            //let dateEditedInvoer = document.getElementById('dateedited-input').value;  
 
             // Maak een recept object in javascript
             let newRecept = {
-                receptName: nameInvoer,
-                cookingTime: cookingTimeInvoer,
-                cookingDescription: cookingDescriptionInvoer,
-                mealType: mealTypeInvoer,
+                recipeID: nameInvoer,
+                prepTime: prepTimeInvoer,
+                prepText: prepTextInvoer,
+                //mealType: mealTypeInvoer,
                 intro: introInvoer,
-                recipePhoto: recipePhotoInvoer,
-                bbqID: bbqIDInvoer,
-                utensilsID: utensilsIDInvoer,
-                uploaderName: uploaderNameInvoer,
+                foto: fotoInvoer,
+                bbqId: bbqIdInvoer,
+                cookAttireId: cookAttireIdInvoer,
+                userId: userIdInvoer,
                 dateCreate: dateCreateInvoer,
-                dateEdited: dateEditedInvoer
+                //dateEdited: dateEditedInvoer
             }
 /*
             newRecept=`{
-  "receptName": "1",
-  "uploaderName": "1",
-  "cookingTime": 1,
-  "cookingDescription": "1",
-  "utensilsID":1,
-  "bbqID": 1,
+  "recipeID": "1",
+  "userId": "1",
+  "prepTime": 1,
+  "prepText": "1",
+  "cookAttireId":1,
+  "bbqId": 1,
   "mealType": 1,
   "isVegan": true,
   "rating": 1,
-  "recipePhoto": "1",
+  "foto": "1",
   "intro": "1",
   "diet": 1,
   "dateCreate": "1",
@@ -201,19 +190,17 @@ console.log(JSON.stringify(newRecept));
                 data.forEach(recept => {
                     tableHtml += `
                         <tr>
-                            <td>${recept.id}</td>
-                            <td>${recept.receptName}</td>
-                            <td width=15%>${recept.uploaderName}</td>
-                            <td>${recept.cookingTime}</td>
-                            <td width=15%>${recept.cookingDescription}</td>
-                            <td>${recept.utensilsID}</td>
-                            <td>${recept.bbqID}</td>
-                            <td>${recept.mealType}</td>
+                            <td>${recept.recipeID}</td>
+                            <td>${recept.recipeTitle}</td>
+                            <td>${recept.userId}</td>
+                            <td>${recept.prepTime}</td>
+                            <td>${recept.prepText}</td>
+                            <td>${recept.cookAttireId}</td>
+                            <td>${recept.bbqId}</td>
                             <td>${recept.rating}</td>
-                            <td>${recept.recipePhoto}</td>
+                            <td>${recept.foto}</td>
                             <td>${recept.intro}</td>
                             <td>${recept.dateCreate}</td>
-                            <td>${recept.dateEdited}</td>
                         </tr>
                     `
                 });

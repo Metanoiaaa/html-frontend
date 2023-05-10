@@ -7,7 +7,7 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Open ReceptToevoegen.html",
+            "name": "Open Recept-aanpassen.html",
             "file": "c:\\Users\\david\\Documents\\00.YCNext_IT_Traineeship\\Eindopdracht\\html-frontend\\ReceptToevoegen.html"
         }
     ]
