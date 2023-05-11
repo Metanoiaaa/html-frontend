@@ -1,37 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
   <title>Recept aanpassen</title>
+
+  <style>
+    .container-fluid{
+        padding-left: 10px;  
+    }
+    .table{
+      width: 40%;
+      margin: auto;
+      padding-left: 0px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  </style>
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="./Recepten.html">Recepten</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./ReceptToevoegen.html">Recept toevoegen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="./Recept-aanpassen.html">Recept aanpassen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./Gebruikers.html">Gebruikers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./GebruikersAanmaken.html">Gebruiker aanmaken</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <div class="delete Recipes">
-    <label for="id">recipeID:</label>
-    <input type="text" id="id" name="id"><br><br>
-    <button onclick="showUpdateRecipe()">Update recipe info</button>
+  <!-- BACK UP LAAD KNOP - WERKT WEL! -->
+  <div class="table">
+    <label for="id">ReceptID:</label>
+    <input type="text" id="id" name="id" placeholder="Vul ReceptID in."><br><br>
+    <button type = "submit" onclick="showUpdateRecipe()">Laad recept</button>
+    <br><br>
   </div>
 
-  <div id="UpdateRecipeTable">
-    <!-- TESTVELD -->
-    <!-- <input id="recipeNameInputFromDatabase" type="text" value="test" /><br> -->
-    <!-- Einde testveld -->
-
+  <div class="table" id="UpdateRecipeTable">
     <label for="recipeTitle-input" class="form-label">Naam recept</label>
-    <input type="text" class="form-control" id="recipeTitle-input" name="recipeTitle" placeholder="Vul naam in"><br>
+    <input type="text" class="form-control" id="recipeTitle-input" name="recipeTitle" placeholder="Vul naam in."><br>
 
     <label for="prepTime-input" class="form-label">Kooktijd</label>
     <input type="number" class="form-control" id="prepTime-input" placeholder="Vul hier de kooktijd in."><br>
 
     <label for="rating-input" class="form-label">Rating</label>
     <input type="number" class="form-control" id="rating-input" placeholder="Vul hier de rating in."><br>
-
-    <!-- <label for="mealtype-input" class="form-label">Type maaltijd</label>
-    <input type="number" class="form-control" id="mealtype-input" placeholder="Vul hier het type maaltijd in."><br> -->
 
     <label for="bbqId-input" class="form-label">Type BBQ</label>
     <input type="number" class="form-control" id="bbqId-input" placeholder="Vul hier het type barbecue in."><br>
@@ -51,32 +89,51 @@
     <label for="dateCreate-input" class="form-label">Aangemaakt op</label>
     <input type="text" class="form-control" id="dateCreate-input" placeholder="Vul hier de aanmaakdatum in."><br>
 
-    <!-- <label for="dateedited-input" class="form-label">Gewijzigd op</label>
-    <input type="text" class="form-control" id="dateedited-input" placeholder="Vul hier de wijzingsdatum in."><br> -->
-
     <label for="foto-input" class="form-label">Foto recept</label>
     <input type="text" class="form-control" id="foto-input" placeholder="Voer hier de url naar de foto in."><br>
 
     <label for="diet-input" class="form-label">Dieetwensen recept</label>
     <input type="text" class="form-control" id="diet-input" placeholder="Voer hier de dieetwensen in."><br>
 
-    <button onclick="updateRecipe()">Update recept</button>
+    <button class="btn btn-info" onclick="updateRecipe()">Update recept</button>
+    <button class="btn btn-danger" onclick="verwijderRecept()">Delete recept</button>
   </div>
 
-  <div class="delete recipe">
+  <!-- DELETE RECEPT KNOP -->
+  <!-- <div class="delete recipe">
     <label for="recipeID">Recept nummer (recipeId):</label>
     <input type="text" id="recipeID" name="recipeID"><br><br>
     <button onclick="verwijderRecept()">Delete recept</button>
-  </div>
+  </div> -->
 
   <script>
+    // VALIDATION
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+    // EINDE VALIDATION
+    
+    // COLAPSE
+    function collapse() {
+      showUpdateRecipe
+    }
+    // EINDE COLLAPSE
 
-    // TEST: Input field vullen met value
-    // var test = "wie dit leest is gaaf";
-    // document.getElementById("recipeNameInputFromDatabase").value = test;
-    // EINDE TEST
 
-
+    // FILL RECIPE FORM
     function showUpdateRecipe() {
       // Haal het formulier op
      var receptID = document.getElementById("id").value
@@ -103,6 +160,8 @@
          xhttp.send();
       var recipeForm = document.getElementById("UpdateRecipeTable");
       UpdateRecipeTable.style.display = "block";
+
+      // myFunction();
     }
 
     function updateRecipe() {
@@ -123,9 +182,7 @@
       if (document.getElementById("prepText-input").value.trim() !== "") {
         newRecept.prepText = document.getElementById("prepText-input").value;
       }
-      // if (document.getElementById("mealtype-input").value.trim() !== "") {
-      //   newRecept.mealType = document.getElementById("mealtype-input").value;
-      // }
+
       if (document.getElementById("intro-input").value.trim() !== "") {
         newRecept.intro = document.getElementById("intro-input").value;
       }
@@ -146,8 +203,6 @@
       }
       if (document.getElementById("dateCreate-input").value.trim() !== "") {
         newRecept.dateCreate = document.getElementById("dateCreate-input").value;
-      // } if (document.getElementById("dateedited-input").value.trim() !== "") {
-      //   newRecept.dateEdited = document.getElementById("dateedited-input").value;
       }
 
       console.log(JSON.stringify(newRecept))
