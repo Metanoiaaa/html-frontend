@@ -5,7 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>Receptenoverzicht</title>
+    <title>Recept toevoegen</title>
+
+    <style>
+        div {
+            width: 250px;
+            /* offset-position: left 200px; */
+            /* position: left 200px; */
+            padding-left: 25px;
+
+        }
+        </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -20,10 +30,10 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li> -->
               <li class="nav-item">
-                <a class="nav-link" href="./Recepten.html">Recepten</a>
+                <a class="nav-link active" aria-current="page" href="./Recepten.html">Recepten</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="./ReceptToevoegen.html">Recept toevoegen</a>
+                <a class="nav-link" href="./ReceptToevoegen.html">Recept toevoegen</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./Recept-aanpassen.html">Recept aanpassen</a>
@@ -38,8 +48,8 @@
           </div>
         </div>
       </nav>
-    
-    <h1>Receptenoverzicht</h1>
+
+    <h1>Recept toevoegen</h1>
 
     <table class="table table-striped">
         <thead>
@@ -51,12 +61,10 @@
                 <th>prepText</th>
                 <th>cookAttireId</th>
                 <th>bbqId</th>
-                <!-- <th>mealType</th> -->
                 <th>rating</th>
                 <th>foto</th>
                 <th>intro</th>
                 <th>dateCreate</th>
-                <!-- <th>dateEdited</th> -->
             </tr>
         </thead>
         <tbody id="recepts-table">
@@ -64,44 +72,45 @@
     </table>
 
     <div id="UpdateRecipeTable">
-        <!-- <label for="recipeTitle-input" class="form-label">Naam recept</label>
-        <input type="text" class="form-control" id="recipeTitle-input" placeholder="Vul hier een receptnaam in."><br>
+        <label for="recipeTitle-input" class="form-label">Naam recept</label>
+        <input type="text" class="form-control" id="recipeTitle-input" placeholder="Vul hier een receptnaam in." size="10"><br>
   
         <label for="prepTime-input" class="form-label">Kooktijd</label>
-        <input type="number" class="form-control" id="prepTime-input" placeholder="Vul hier de kooktijd in."><br>
+        <input type="number" class="form-control" id="prepTime-input" placeholder="Vul hier de kooktijd in." size="10"><br>
   
         <label for="rating-input" class="form-label">Rating</label>
-        <input type="number" class="form-control" id="rating-input" placeholder="Vul hier de rating in."><br>
-  
+        <input type="number" class="form-control" id="rating-input" placeholder="Vul hier de rating in." size="10"><br>
+
         <label for="bbqId-input" class="form-label">Type BBQ</label>
-        <input type="number" class="form-control" id="bbqId-input" placeholder="Vul hier het type barbecue in."><br>
+        <input type="number" class="form-control" id="bbqId-input" placeholder="Vul hier het type barbecue in." size="10"><br>
   
         <label for="intro-input" class="form-label">Introductie</label>
-        <input type="text" class="form-control" id="intro-input" placeholder="Vul hier de introductie in."><br>
+        <input type="text" class="form-control" id="intro-input" placeholder="Vul hier de introductie in." size="10"><br>
   
         <label for="prepText-input" class="form-label">Instructies</label>
-        <input type="text" class="form-control" id="prepText-input" placeholder="Vul hier de instructies in."><br>
+        <input type="text" class="form-control" id="prepText-input" placeholder="Vul hier de instructies in." size="10"><br>
   
         <label for="cookAttireId-input" class="form-label">Benodigdheden</label>
-        <input type="number" class="form-control" id="cookAttireId-input" placeholder="Vul hier de benodigdheden in."><br>
+        <input type="number" class="form-control" id="cookAttireId-input" placeholder="Vul hier de benodigdheden in." size="10"><br>
   
         <label for="userId-input" class="form-label">Geupload door</label>
-        <input type="text" class="form-control" id="userId-input" placeholder="Vul hier de uploader in."><br>
+        <input type="text" class="form-control" id="userId-input" placeholder="Vul hier de uploader in." size="10"><br>
   
         <label for="dateCreate-input" class="form-label">Aangemaakt op</label>
-        <input type="text" class="form-control" id="dateCreate-input" placeholder="Vul hier de aanmaakdatum in."><br>
+        <input type="text" class="form-control" id="dateCreate-input" placeholder="Vul hier de aanmaakdatum in." size="10"><br>
   
         <label for="foto-input" class="form-label">Foto recept</label>
-        <input type="text" class="form-control" id="foto-input" placeholder="Voer hier de url naar de foto in."><br>
+        <input type="text" class="form-control" id="foto-input" placeholder="Voer hier de url naar de foto in." size="10"><br>
 
-        <button type="button" class="btn btn-success" onclick="createRecept()">Opslaan</button> -->
+        <button type="button" class="btn btn-success" onclick="createRecept()">Opslaan</button>
+
 <button onclick="loadRecepts()">Toon recepten</button>
 <div id="divjepython"></div>
 
 <br>
 
-<!-- <button type="button" class="btn btn-success" onclick="toon_allereceptenpython()">Toon recepten python</button>
-<div id="divjepython"></div> -->
+<button type="button" class="btn btn-success" onclick="toon_allereceptenpython()">Toon recepten python</button>
+<div id="divjepython"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>       
     <script>
@@ -135,7 +144,6 @@
        
         }
 
-/*
        function createRecept() {
             // Invoer velden uitlezen
             let nameInvoer = document.getElementById('recipeTitle-input').value;
@@ -166,24 +174,6 @@
                 //dateEdited: dateEditedInvoer
             }
 
-//   newRecept=`{
-//   "recipeID": "1",
-//   "userId": "1",
-//   "prepTime": 1,
-//   "prepText": "1",
-//   "cookAttireId":1,
-//   "bbqId": 1,
-//   "mealType": 1,
-//   "isVegan": true,
-//   "rating": 1,
-//   "foto": "1",
-//   "intro": "1",
-//   "diet": 1,
-//   "dateCreate": "1",
-//   "dateEdited": "1"
-// }
-// `
-
 console.log(JSON.stringify(newRecept));
 
             fetch("https://localhost:7042/api/Recepten", {
@@ -202,8 +192,7 @@ console.log(JSON.stringify(newRecept));
                 alert('Er is iets fouts gegaan');
             });  
         }
-      */
-     
+       
        function loadRecepts() {
             fetch("https://localhost:7042/api/Recepten")
             .then(res => res.json()) // = anonymous function
