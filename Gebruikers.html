@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Gebruiker Aanpassen</title>
   </head>
   <body>
 
@@ -12,9 +12,9 @@
     
     
     
-    <div class = "delete Users"> 
+    <div class = "ShowUserInfo"> 
     <label for="userId">userId:</label>
-    <input type="text" id="userId" name="userId"><br><br>
+    <input type="text" id="userId" name="userId" placeholder="Vul UserID in"><br><br>
     <button onclick="showUpdateUser()">Update user info</button>
     </div>
     <div id="UpdateUserTable" style="display: none;">
@@ -55,7 +55,29 @@
 
   <script>
     function showUpdateUser() {
-      // Haal het formulier op
+ 
+      var userId = document.getElementById("userId").value
+      console.log(userId);
+
+      var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function (){
+        if (this.readyState == 4 && this.status == 200) { var response = JSON.parse(xhttp.responseText);
+         console.log(response[userId]) }
+         var geladenUser = response[userId]
+        //  console.log(typeof geladenRecept)
+         Object.entries(geladenUser).forEach(element => {
+          const [key, value]=element
+          console.log(key,value)
+            try {
+              document.getElementById(key).value = value
+              console.log(element)
+          } catch (error) {
+              console.log(error)
+          }
+         });
+        };
+        xhttp.open("GET", "https://localhost:7042/api/User", true);
+         xhttp.send();
       var UserForm = document.getElementById("UpdateUserTable");
       UpdateUserTable.style.display = "block";
     }
