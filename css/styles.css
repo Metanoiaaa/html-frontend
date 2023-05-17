@@ -1,0 +1,19 @@
+body{
+  margin: 50px;
+  background-color: yellow;
+}
+
+#UpdateRecipeTable, .delete.recipe, .find.recipe{
+  border: 1px solid #555;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+#UpdateRecipeTable{
+  display: none;
+}
+
+.col{
+  border: 1px solid #000;
+}
