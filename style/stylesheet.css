@@ -1,0 +1,31 @@
+body {
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+h1 { 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.form, .field, .table, table{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+}
+
+.container-fluid{
+    padding-left: 10px;  
+}
+.table{
+  width: 40%;
+  margin: auto;
+  padding-left: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
