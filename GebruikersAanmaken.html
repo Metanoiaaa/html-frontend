@@ -1,185 +1,200 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Toevoegen van gebruikers</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <link href="css/styles.css" rel="stylesheet">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand">
-      <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Logo</a>
-      </div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create new user</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-          </a>
-          <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                  <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-      </li>
-  </ul>
+  <link href="css/styles.css" rel="stylesheet">
 
-</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
 
+<body>
+  <style>
+    h1 {
+      margin-top: 20px;
+      text-align: center;
+    }
 
-  </nav>
-    <form id="form" onsubmit="createNewUser(); return false;">
-      <label for="firstname">Voornaam:</label>
-      <input type="text" id="firstname" name="firstname"><br><br>
-      
-      <label for="lastname">Achternaam:</label>
-      <input type="text" id="lastname" name="lastname"><br><br>
-      
-      <label for="username">Gebruikersnaam:</label>
-      <input type="text" id="username" name="username"><br><br>
-      
-      <label for="password">Wachtwoord:</label>
-      <input type="password" id="password" name="password"><br><br>
-      
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email"><br><br>
-      
-      <label for="dateofbirth">Geboortedatum:</label>
-      <input type="date" id="dateofbirth" name="dateofbirth"><br><br>
-      
-      <label for="uploads">Uploads:</label>
-      <input type="number" id="uploads" name="uploads"><br><br>
-      
-      <label for="bio">Bio:</label>
-      <input type="text" id="bio" name="bio"><br><br>
-      
-      <label for="datecreate">Datum aanmaak:</label>
-      <input type="date" id="datecreate" name="datecreate"><br><br>
-      
-      <label for="profilepicture">Profielafbeelding:</label>
-      <input type="text" id="profilepicture" name="profilepicture"><br><br>
-      
-      <button type="submit">Opslaan</button>
-    </form>
-
-    <button onclick="toon_alles()">Toon iedereen</button>
-
-    <div id="LeesGebruikerdiv"></div>
-
-   
-
+    p {
+      text-align: center;
+    }
+    .col {
+      border: 0px solid #000;
+    }
 
     
-    <div class = "delete Users"> 
-    <label for="userId">userId:</label>
-    <input type="text" id="userId" name="userId"><br><br>
-    <button onclick="verwijderGebruiker()">Delete User</button>
+
+
+
+
+  </style>
+  <div class="container-fluid onze-header">
+
+
+    <nav class="navbar navbar-expand">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.png" class="img-fluid logo" alt="Recepten Database" />
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Recepten.html">Recepten</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Recepten Bewerken
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="ReceptToevoegen.html">Toevoegen</a></li>
+              <li><a class="dropdown-item" href="Recept-aanpassen.html">Aanpassen</a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-circle-user"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="Gebruikers.html">Mijn Account</a></li>
+              <li><a class="dropdown-item" href="GebruikersAanmaken.html">Account aanmaken</a></li>
+
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+
+    </nav>
+
+    <div class="header">
+      <div class="search">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" class="form-control" placeholder="Zoek recept..">
+        </div>
+      </div>
     </div>
-   
 
-    <script>
+  </div>
+  <H1>OutdoorCooking account aanmaken</H1>
+  <p>Vul de volgende gegevens in om een account aan te maken.</p>
+  </div>
+<hr>
+  <div class="container text-center TabelGebruikersGegevens">
+    <div class="row row-cols-2">
+      <div class="col">
+        <div class="table TabelGebruikersGegevens">
 
-        function toon_alles() {
-          fetch("https://localhost:7042/api/User")
-          .then(kukeleku => kukeleku.json()) 
-          .then(d => abc(d))
-        }
+          <label for="firstName">First name:</label>
+          <input type="text" class="form-control mb-3" id="firstname" name="firstname">
 
-        function abc(data) {
-          
-          for (let i = 0; i < data.length; i++){
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].firstname +"<br>";
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].lastname +"<br>";
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].username +"<br>";
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].email +"<br>";
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].dateofBirth +"<br>";
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].uploads +"<br>";
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].bio +"<br>";
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].dateCreate +"<br>";
-            document.getElementById("LeesGebruikerdiv").innerHTML += data[i].profilePicture +"<br>" +"\n";
-          }
-        }
+          <label for="lastName">Last name:</label>
+          <input type="text" class="form-control mb-3" id="lastname" name="lastname">
 
-        
-        function toon_allespython() {
-          fetch("http://127.0.0.1:5000/recipes")
-          .then(kukeleku => kukeleku.json()) 
-          .then(d => def(d))
-        }
+          <label for="username">Username:</label>
+          <input type="text" class="form-control mb-3" id="username" name="username">
 
-        function def(data) {
-          
-          
-            document.getElementById("divjepython").innerHTML = data.recipe_title[0];
-        
-          
-        }
-        function createNewUser() {
+          <label for="password">Password:</label>
+          <input type="password" class="form-control mb-3" class="form-control mb-3" id="password" name="password">
 
-          let FirstnameInvoer = document.getElementById('firstname').value;
-          let LastnameInvoer = document.getElementById('lastname').value;
-          let UsernameInvoer = document.getElementById('username').value;
-          let PasswordInvoer = document.getElementById('password').value;
-          let EmailInvoer = document.getElementById('email').value;
-          let DateofBirthInvoer = document.getElementById('dateofbirth').value;
-          let UploadsInvoer = document.getElementById('uploads').value;
-          let BioInvoer = document.getElementById('bio').value;
-          let DateCreateInvoer = document.getElementById('datecreate').value;
-          let ProfilePictureInvoer = document.getElementById('profilepicture').value; 
+          <label for="email">Email:</label>
+          <input type="email" class="form-control mb-3" id="email" name="email">
 
-          let NewUser = {
-          Firstname: FirstnameInvoer,
-          Lastname: LastnameInvoer,
-          Username: UsernameInvoer,
-          Email: EmailInvoer,
-          DateofBirth: DateofBirthInvoer,
-          Uploads: UploadsInvoer,
-          Bio: BioInvoer,
-          DateCreate: DateCreateInvoer,
-          ProfilePicture: ProfilePictureInvoer,
-          Password: PasswordInvoer,
-          };
-        
-        
-       
+          <label for="dateOfBirth">Date of birth:</label>
+          <input type="date" class="form-control mb-3" id="dateofbirth" name="dateofBirth">
 
-          fetch('https://localhost:7042/api/User', {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(NewUser),
-          })
-            .then((response) => {
-              alert("User Toegevoegd");
-              
-            
-            })
-            //.catch((error) => {
-            //  alert("Er is iets fouts gegaan");
-          // });
-        }     
-    </script>
-  </body>
+          <label for="datecreate">Date of account creation:</label>
+          <input type="date" class="form-control mb-3" id="datecreate" name="dateCreate">
+
+          <label for="Uploads">Uploads:</label>
+          <input type="text" class="form-control mb-3" id="uploads" name="uploads" value="0" readonly>
+
+        </div>
+
+      </div>
+      <div class="col">
+        <div class="table TabelGebruikersGegevens">
+          <label for="profilepicture">Profile picture:</label>
+          <input type="text" class="form-control mb-3" id="profilepicture" name="profilepicture">
+          <label for="bio">Bio:</label>
+          <textarea id="bio" class="form-control mb-3" name="bio"></textarea>
+
+        </div>
+        <button class="btn btn-success" onclick="createNewUser()">Account aanmaken</button>
+        <button class="btn btn-danger" onclick="location.href='index.html'">Annuleren</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+
+    function createNewUser() {
+
+      let FirstnameInvoer = document.getElementById('firstname').value;
+      let LastnameInvoer = document.getElementById('lastname').value;
+      let UsernameInvoer = document.getElementById('username').value;
+      let PasswordInvoer = document.getElementById('password').value;
+      let EmailInvoer = document.getElementById('email').value;
+      let DateofBirthInvoer = document.getElementById('dateofbirth').value;
+      let UploadsInvoer = document.getElementById('uploads').value;
+      let BioInvoer = document.getElementById('bio').value;
+      let DateCreateInvoer = document.getElementById('datecreate').value;
+      let ProfilePictureInvoer = document.getElementById('profilepicture').value;
+
+      let NewUser = {
+        Firstname: FirstnameInvoer,
+        Lastname: LastnameInvoer,
+        Username: UsernameInvoer,
+        Email: EmailInvoer,
+        DateofBirth: DateofBirthInvoer,
+        Uploads: UploadsInvoer,
+        Bio: BioInvoer,
+        DateCreate: DateCreateInvoer,
+        ProfilePicture: ProfilePictureInvoer,
+        Password: PasswordInvoer,
+      };
+
+      fetch('https://yc2304csharp.azurewebsites.net/api/User', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(NewUser),
+      })
+        .then((response) => {
+          alert("User Toegevoegd");
+
+
+        })
+      //.catch((error) => {
+      //  alert("Er is iets fouts gegaan");
+      // });
+    }
+
+
+
+
+
+  </script>
+</body>
+
 </html>
-

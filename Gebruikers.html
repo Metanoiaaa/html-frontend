@@ -1,234 +1,201 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gebruiker Aanpassen</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<html>
 
-        <link href="css/styles.css" rel="stylesheet">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="css/styles.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
-  <body>
-    <style>
-      .Gebruikersnaam{
-        margin:auto;
-        width: 100%;
-        text-align: center;
-        padding-top: 100px;
-        padding-bottom: 50px;
 
-      }
+<body>
+  <style>
+    .Gebruikersnaam {
+      margin: auto;
+      width: 100%;
+      text-align: center;
+      padding-top: 50px;
+      padding-bottom: 70px;
+      font-size: 80px;
 
-    </style>
+    }
+
+    .col {
+      border-width: 0px;
+    }
+
+    .gebruikersgegevens {
+      font-weight: 100;
+      font-size: 16px;
+    }
+
+    .bewerken-knop {
+      margin-bottom: 100px;
+    }
+
+    .container1 {
+  display: grid;
+  place-items: center;
+}
+  </style>
+  <div class="container-fluid onze-header">
 
 
+    <nav class="navbar navbar-expand">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.png" class="img-fluid logo" alt="Recepten Database" />
+        </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Recepten.html">Recepten</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Recepten Bewerken
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="ReceptToevoegen.html">Toevoegen</a></li>
+              <li><a class="dropdown-item" href="Recept-aanpassen.html">Aanpassen</a></li>
 
-    <div class="container-fluid onze-header">
-      <nav class="navbar navbar-expand">
-          <div class="container-fluid">
-              <a class="navbar-brand" href="index.html">Logo</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-circle-user"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="Gebruikers.html">Mijn Account</a></li>
+              <li><a class="dropdown-item" href="GebruikersAanmaken.html">Account aanmaken</a></li>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="Recepten.html">Recepten</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                          aria-expanded="false">
-                          Recepten Bewerken
-                      </a>
-                      <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="ReceptToevoegen.html">Toevoegen</a></li>
-                          <li><a class="dropdown-item" href="Recept-aanpassen.html">Aanpassen</a></li>
+            </ul>
+          </li>
+        </ul>
 
-                      </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                          aria-expanded="false">
-                          <i class="fa-solid fa-circle-user"></i>
-                      </a>
-                      <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="Gebruikers.html">Mijn Account</a></li>
-                          <li><a class="dropdown-item" href="GebruikersAanmaken.html">Account aanmaken</a></li>
-
-                      </ul>
-                  </li>
-              </ul>
-          </div>
-      </nav>
-
-      <div class="header">
-          <div class="search">
-              <div class="input-group">
-                  <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                  <input type="text" class="form-control" placeholder="Zoek recept..">
-              </div>
-          </div>
       </div>
 
-  </div>
-  <div class="Gebruikersnaam">
-     <h1>Gebruikersnaam<h1></h1>
-  </div>
- 
+    </nav>
 
-  <div class="container text-center">
-    <div class="row row-cols-2">
-      <div class="col">Column</div>
-      <div class="col">Column</div>
-      <div class="col">Column</div>
-      <div class="col">Column</div>
+    <div class="header">
+      <div class="search">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" class="form-control" placeholder="Zoek recept..">
+        </div>
+      </div>
     </div>
-  </div>
+
+    <div>
+      <p class="Gebruikersnaam" id="username"></p>
+    </div>
+    <hr>
+
+
+    <div class="container text-center">
+      <div class="row row-cols-2">
+        <div class="col">
+          <div class="container text-center">
+
+            <div class="col">
+              <div class="table">
+                <label for="firstName">First name:</label>
+                <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" id="firstname" readonly></p>
+
+                <label for="lastName">Last name:</label>
+                <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" id="lastname" readonly></p>
+
+                <label for="password">Password:</label>
+                <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" id="password" readonly></p>
+
+                <label for="email">Email:</label>
+                <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" id="email" readonly></p>
+
+                <label for="dateOfBirth">Date of birth:</label>
+                <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" id="dateofBirth" readonly></p>
+
+                <label for="uploads">Uploads:</label>
+                <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" id="uploads" readonly></p>
+
+                <label for="dateCreate">Date created:</label>
+                <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" id="dateCreate" readonly></p>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="col">
+          <div class="table">
+            <label for="profilePicture">Profile picture:</label>
+            <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" type="text" id="profilePicture"
+              name="profilePicture"></p>
+
+            <label for="bio">Bio:</label>
+            <p class="form-control mb-2 form-control-plaintext gebruikersgegevens" id="bio" name="bio"></p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="container1">
+      <button class="btn btn-info bewerken-knop" onclick="location.href='Gebruikersbewerken.html'">Gebruikersgegevens
+        bewerken</button>
+    </div>
     
-    <div class = "ShowUserInfo"> 
-    <label for="userId">userId:</label>
-    <input type="text" id="userId" name="userId" placeholder="Vul UserID in"><br><br>
-    <button onclick="showUpdateUser()">Update user info</button>
-    </div>
+
     <div id="UpdateUserTable" style="display: none;">
 
-      <label for="firstName">First name:</label>
-      <p id="firstname" name="firstname"><br><br>
 
-      <label for="lastName">Last name:</label>
-      <input type="text" id="lastname" name="lastname"><br><br>
 
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username"><br><br>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password"><br><br>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email"><br><br>
-
-      <label for="dateOfBirth">Date of birth:</label>
-      <input type="date" id="dateofBirth" name="dateofBirth"><br><br>
-
-      <label for="uploads">Uploads:</label>
-      <input type="text" id="uploads" name="uploads"><br><br>
-
-      <label for="bio">Bio:</label>
-      <textarea id="bio" name="bio"></textarea><br><br>
-
-      <label for="dateCreate">Date created:</label>
-      <input type="date" id="dateCreate" name="dateCreate"><br><br>
-
-      <label for="profilePicture">Profile picture:</label>
-      <input type="text" id="profilePicture" name="profilePicture"><br><br>
-
-      <button onclick="updateUser()">Update user</button>
     </div>
-    
-
-  <script>
-    function showUpdateUser() {
- 
-      var userId = document.getElementById("userId").value
-      console.log(userId);
-
-      var xhttp = new XMLHttpRequest();
-       xhttp.onreadystatechange = function (){
-        if (this.readyState == 4 && this.status == 200) { var response = JSON.parse(xhttp.responseText);
-         console.log(response[userId]) }
-         var geladenUser = response[userId]
-        //  console.log(typeof geladenRecept)
-         Object.entries(geladenUser).forEach(element => {
-          const [key, value]=element
-          console.log(key,value)
-            try {
-              document.getElementById(key).value = value
-              console.log(element)
-          } catch (error) {
-              console.log(error)
-          }
-         });
-        };
-        xhttp.open("GET", "https://localhost:7042/api/User", true);
-         xhttp.send();
-      var UserForm = document.getElementById("UpdateUserTable");
-      UpdateUserTable.style.display = "block";
-    }
 
 
-    function updateUser() {
-  // Haal de gegevens van de gebruiker op uit de inputvelden
-  var userId = document.getElementById("userId").value;
-  var NewUser = {};
+    <script>
+      function fetchUserDetails() {
+        var userId = 1; // Replace with the actual primary key you want to fetch
 
-  // Check welke velden zijn ingevuld en voeg deze toe aan het veld-object
-  if (document.getElementById("firstname").value.trim() !== "") {
-    NewUser.firstname = document.getElementById("firstname").value;
-  }
-  if (document.getElementById("lastname").value.trim() !== "") {
-    NewUser.lastname = document.getElementById("lastname").value;
-  }
-  if (document.getElementById("username").value.trim() !== "") {
-    NewUser.username = document.getElementById("username").value;
-  }
-  if (document.getElementById("password").value.trim() !== "") {
-    NewUser.password = document.getElementById("password").value;
-  }
-  if (document.getElementById("email").value.trim() !== "") {
-    NewUser.email = document.getElementById("email").value;
-  }
-  if (document.getElementById("dateofBirth").value.trim() !== "") {
-    NewUser.dateOfBirth = document.getElementById("dateofBirth").value;
-  }
-  if (document.getElementById("uploads").value.trim() !== "") {
-    NewUser.uploads = document.getElementById("uploads").value;
-  }
-  if (document.getElementById("bio").value.trim() !== "") {
-    NewUser.bio = document.getElementById("bio").value;
-  }
-  if (document.getElementById("dateCreate").value.trim() !== "") {
-    NewUser.dateCreate = document.getElementById("dateCreate").value;
-  }
-  if (document.getElementById("profilePicture").value.trim() !== "") {
-    NewUser.profilePicture = document.getElementById("profilePicture").value;
-  }
+        fetch(`https://yc2304csharp.azurewebsites.net/api/User/${userId}`)
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById("firstname").textContent = data.firstname;
+            document.getElementById("lastname").textContent = data.lastname;
+            document.getElementById("username").textContent = data.username;
+            document.getElementById("password").textContent = data.password;
+            document.getElementById("email").textContent = data.email;
+            document.getElementById("dateofBirth").textContent = data.dateofBirth;
+            document.getElementById("uploads").textContent = data.uploads;
+            document.getElementById("dateCreate").textContent = data.dateCreate;
+            document.getElementById("bio").textContent = data.bio;
+            document.getElementById("profilePicture").textContent = data.profilePicture;
 
+          })
+          .catch(error => console.error(error));
+      }
 
- 
-  console.log(JSON.stringify(NewUser))
+      fetchUserDetails()
+    </script>
+</body>
 
-  // Stuur de gegevens naar de backend via de Fetch API
-  fetch('https://localhost:7042/api/User/' + userId, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(NewUser)
-    
-  })
-  .then(response => {
-    if (response.ok) {
-      alert("Gebruikersgegevens bijgewerkt");
-    } else {
-      alert("Er is een fout opgetreden bij het bijwerken van de gebruikersgegevens");
-    }
-  })
-  .catch(error => {
-    console.error('Fout bij het bijwerken van de gebruikersgegevens:', error);
-  });
-}
-
- </script>   
-  </body>
 </html>
