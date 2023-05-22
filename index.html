@@ -161,8 +161,8 @@ font-size: 12px;
         <div class="header">
             <div class="search">
                 <div class="input-group">
-                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" class="form-control" placeholder="Zoek recept..">
+                    <span for= "search" id="refresh" class="input-group-text"><i class="fa-solid fa-magnifying-glass" ></i></span>
+                    <input id = "search" type="text" class="form-control" placeholder="" onchange="location.href='index.html'">
                 </div>
             </div>
         </div>
@@ -216,14 +216,14 @@ font-size: 12px;
                 <input type="checkbox" id="diet1" value="vlees" onclick="selectOnlyThem(this.id)" onchange="logJSONData()" /> vlees<br>
                 <input type="checkbox" id="diet2" value="vis" onclick="selectOnlyThem(this.id)" onchange="logJSONData()" /> vis<br>
                 <input type="checkbox" id="diet3" value="vegetarisch" onclick="selectOnlyThem(this.id)" onchange="logJSONData()"/> vegetarisch<br>
-                <input type="checkbox" id="diet3" value="veganistisch" onclick="selectOnlyThem(this.id)" onchange="logJSONData()"/> veganistisch<br>
-                <input type="checkbox" id="diet3" value="lactosevrij" onclick="selectOnlyThem(this.id)" onchange="logJSONData()"/> lactosevrij<br>
+                <input type="checkbox" id="diet4" value="veganistisch" onclick="selectOnlyThem(this.id)" onchange="logJSONData()"/> veganistisch<br>
+                <input type="checkbox" id="diet5" value="lactosevrij" onclick="selectOnlyThem(this.id)" onchange="logJSONData()"/> lactosevrij<br>
 
             </form>
         </div>
     </div>
 
-    <section id ="gridclass" class="recipe-grid" onclick="location.href='recepten.html'">
+    <section id ="gridclass" class="recipe-grid" onclick="location.href='Recepten.html'">
         
     </section>
         
@@ -250,7 +250,8 @@ font-size: 12px;
 
 
 <script>
-
+localStorage.setItem("serialNumber", document.getElementById('search').value);
+console.log(localStorage.getItem("serialNumber"));
     $(window).scroll(function () {
             var height = $(window).scrollTop();
 
@@ -262,13 +263,19 @@ font-size: 12px;
         });
     
     function checkButtonA() {
-      document.getElementById("output").innerHTML +=
+        localStorage.setItem("serialNumber", document.getElementById('search').value);
+
+        document.getElementById("output").innerHTML +=
         "<br> U heeft op knop A geklikt. ";
     }
     
 
     async function logJSONData() {
-        const req = new Request("http://127.0.0.1:5000/recipes")
+        //document.getElementById("search").value = "location.href='recepten.html'"
+        document.getElementById("refresh").onclick = "location.href='index.html'"
+        var x = document.getElementById("search").value;
+        console.log(x)
+        const req = new Request("https://yc2304pythonbackend.azurewebsites.net/recipes")
         const response = await fetch(req);
         const textData = await response.text();
         const jsonData = JSON.parse(textData);
@@ -306,7 +313,10 @@ font-size: 12px;
         for(var i=0; i<jsonData.length; i++){
             jsonData[i]["3"] = jsonData[i]["3"].replace("PT", "")
             jsonData[i]["3"] = jsonData[i]["3"].replace("M", "")
-            if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter  &&  jsonData[i]["3"] < filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet){
+            jsonData[i]["3"] = parseInt(jsonData[i]["3"])
+            console.log(typeof jsonData[i]["3"])
+            console.log(filter2)
+            if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter  &&  jsonData[i]["3"]<= filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet){
                 gridclass.innerHTML += `<div id="prevId" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
@@ -323,7 +333,7 @@ font-size: 12px;
                     </div>
                     </div>
                 </div>`
-                console.log(jsonData[i]["3"]<filter2)
+                
         }}
         for (var i=0; i<jsonData.length; i++){
             if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter  &&  jsonData[i]["3"] < filter2 && jsonData[i]["4"].includes(ingred)  && jsonData[i]["10"] == diet){
@@ -395,6 +405,6 @@ function selectOnlyThem(id) {
     document.getElementById(id).checked = true;
 }
 
-
+//kaas = document.getElementById("Search").value;
 window.onload = logJSONData
 </script>
