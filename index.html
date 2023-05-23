@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,117 +9,125 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-        <link href="css/styles.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 
-        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+
 <body>
-<style>
-h1 {
-  text-align: center;
-}
-h2 {
-  text-align: center;
-}
+    <style>
+        h1 {
+            text-align: center;
+        }
 
-br {
-    text-align: center;
-}
-.wrapper{
-    width: 90%;  
-    padding: 10px;
-}
-.recipe-grid {
-  display: grid;
-  position: relative;
-  background-color: 1, 0, 0, 0.7;
-  left: 200px;;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 16px;
-  row-gap: 40px;
-  z-index: 0;
-}
-.profile-picture {
-  width: 36px;
-  border-radius: 50px;
-}
+        h2 {
+            text-align: center;
+        }
 
-@media (max-width: 750px) {
-  .recipe-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
+        br {
+            text-align: center;
+        }
 
-@media (min-width: 751px) and (max-width: 999px) {
-  .recipe-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
+        .wrapper {
+            width: 90%;
+            padding: 10px;
+        }
 
-@media (min-width: 1000px) {
-  .recipe-grid {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-.sidebar {
-height: 60%;
-width: 200px;
-position: absolute;
-opacity: 100%;
-left: 0;
-top: 0;
-padding-top: 40px;
-background-color: 1, 0, 0, 0.7;
-margin-top: 600px;
-overflow:scroll;
-z-index: 0;
-}
+        .recipe-grid {
+            display: grid;
+            position: relative;
+            background-color: 1, 0, 0, 0.7;
+            left: 200px;
+            ;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 16px;
+            row-gap: 40px;
+            z-index: 0;
+        }
 
-.sidebar div {
-padding: 8px;
-font-size: 12px;
-display: block;
-}
+        .profile-picture {
+            width: 36px;
+            border-radius: 50px;
+        }
 
-.body-text {
-margin-left: 150px;
-font-size: 12px;
-}
+        @media (max-width: 750px) {
+            .recipe-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
 
-.sidebar-link {
-  height: 74px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  cursor: pointer;
-}
+        @media (min-width: 751px) and (max-width: 999px) {
+            .recipe-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
 
-.sidebar-link:hover {
-  background-color: rgb(235, 235, 235);
-}
+        @media (min-width: 1000px) {
+            .recipe-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
 
-.sidebar-link img {
-  height: 24px;
-  margin-bottom: 4px;
-}
+        .sidebar {
+            height: 60%;
+            width: 200px;
+            position: absolute;
+            opacity: 100%;
+            left: 0;
+            top: 0;
+            padding-top: 40px;
+            background-color: 1, 0, 0, 0.7;
+            margin-top: 600px;
+            overflow: scroll;
+            z-index: 0;
+        }
 
-.sidebar-link div {
-  font-size: 10px;
-}
-</style>
+        .sidebar div {
+            padding: 8px;
+            font-size: 12px;
+            display: block;
+        }
+
+        .body-text {
+            margin-left: 150px;
+            font-size: 12px;
+        }
+
+        .sidebar-link {
+            height: 74px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover {
+            background-color: rgb(235, 235, 235);
+        }
+
+        .sidebar-link img {
+            height: 24px;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-link div {
+            font-size: 10px;
+        }
+    </style>
     <div class="container-fluid onze-header">
 
 
         <nav class="navbar navbar-expand">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
-                    <img src="img/logo.png" class="img-fluid logo" alt="Recepten Database"/>
+                    <img src="img/logo.png" class="img-fluid logo" alt="Recepten Database" />
                 </a>
             </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -161,8 +170,10 @@ font-size: 12px;
         <div class="header">
             <div class="search">
                 <div class="input-group">
-                    <span for= "search" id="refresh" class="input-group-text"><i class="fa-solid fa-magnifying-glass" ></i></span>
-                    <input id = "search" type="text" class="form-control" placeholder="" onchange="location.href='index.html'">
+                    <span for="search" id="refresh" class="input-group-text"><i
+                            class="fa-solid fa-magnifying-glass"></i></span>
+                    <input id="searchBar" type="text" class="form-control" placeholder=""
+                        onkeydown='handleKeyDown(event)'>
                 </div>
             </div>
         </div>
@@ -170,78 +181,92 @@ font-size: 12px;
     </div>
 
 
-<div id = "headers" class="container mt-5">
+    <div id="headers" class="container mt-5">
 
-    <h1>BBQ Recepten</h1>
-    <h2>Heerlijke Recepten Voor op de BBQ</h2>
+        <h1>BBQ Recepten</h1>
+        <h2>Heerlijke Recepten Voor op de BBQ</h2>
 
-</div>
-<div id = "recepten" class = "container mt-5">
+    </div>
+    <div id="recepten" class="container mt-5">
 
-</div>
-
-<div class="wrapper">
-    <div class="sidebar">
-            <div>
-                <form id = "form1">
-                        BBQ type:<br>
-                        <input type="checkbox" id="bbq1" value="1" onclick="selectOnlyThat(this.id)" onchange="logJSONData()" /> Gas<br>
-                        <input type="checkbox" id="bbq2" value="2" onclick="selectOnlyThat(this.id)" onchange="logJSONData()" /> Electric<br>
-                        <input type="checkbox" id="bbq3" value="3" onclick="selectOnlyThat(this.id)" onchange="logJSONData()"/> Coal<br>
-                </form>
-             
-             </div>
-
-        <div>
-            <label id = "ratingLabel" for="ratingRange" class="form-label"></label>
-            <input type="range" class="form-range" min="4" max="5" step="0.1" id="ratingRange" onchange="logJSONData()">
-        </div>
-
-        <div>
-            <label id= "prepLabel" for="prepRange" class="form-label"></label>
-            <input type="range" class="form-range" min="0" max="5000" step="20" id="prepRange" onchange="logJSONData()">
-        </div>
-        <div>
-            <form id = "form2">
-                Ingredients:<br>
-                <input type="checkbox" id="Check1" value="onion" onclick="selectOnlyThis(this.id)" onchange="logJSONData()" /> Onion<br>
-                <input type="checkbox" id="Check2" value="salt" onclick="selectOnlyThis(this.id)" onchange="logJSONData()" /> salt<br>
-                <input type="checkbox" id="Check3" value="beef" onclick="selectOnlyThis(this.id)" onchange="logJSONData()"/> Beef<br>
-        </form>
-        </div>
-
-        <div>
-            <form id = "form3">
-                Diet:<br>
-                <input type="checkbox" id="diet1" value="vlees" onclick="selectOnlyThem(this.id)" onchange="logJSONData()" /> vlees<br>
-                <input type="checkbox" id="diet2" value="vis" onclick="selectOnlyThem(this.id)" onchange="logJSONData()" /> vis<br>
-                <input type="checkbox" id="diet3" value="vegetarisch" onclick="selectOnlyThem(this.id)" onchange="logJSONData()"/> vegetarisch<br>
-                <input type="checkbox" id="diet4" value="veganistisch" onclick="selectOnlyThem(this.id)" onchange="logJSONData()"/> veganistisch<br>
-                <input type="checkbox" id="diet5" value="lactosevrij" onclick="selectOnlyThem(this.id)" onchange="logJSONData()"/> lactosevrij<br>
-
-            </form>
-        </div>
     </div>
 
-    <section id ="gridclass" class="recipe-grid" onclick="location.href='Recepten.html'">
-        
-    </section>
-        
-</div>
+    <div class="wrapper">
+        <div class="sidebar">
+            <div>
+                <form id="form1">
+                    BBQ type:<br>
+                    <input type="checkbox" id="bbq1" value="1" onclick="selectOnlyThat(this.id)"
+                        onchange="logJSONData()" /> Gas<br>
+                    <input type="checkbox" id="bbq2" value="2" onclick="selectOnlyThat(this.id)"
+                        onchange="logJSONData()" /> Electric<br>
+                    <input type="checkbox" id="bbq3" value="3" onclick="selectOnlyThat(this.id)"
+                        onchange="logJSONData()" /> Coal<br>
+                </form>
+
+            </div>
+
+            <div>
+                <label id="ratingLabel" for="ratingRange" class="form-label"></label>
+                <input type="range" class="form-range" min="4" max="5" step="0.1" id="ratingRange"
+                    onchange="logJSONData()">
+            </div>
+
+            <div>
+                <label id="prepLabel" for="prepRange" class="form-label"></label>
+                <input type="range" class="form-range" min="0" max="5000" step="20" id="prepRange"
+                    onchange="logJSONData()">
+            </div>
+            <div>
+                <form id="form2">
+                    Ingredients:<br>
+                    <input type="checkbox" id="Check1" value="onion" onclick="selectOnlyThis(this.id)"
+                        onchange="logJSONData()" /> Onion<br>
+                    <input type="checkbox" id="Check2" value="salt" onclick="selectOnlyThis(this.id)"
+                        onchange="logJSONData()" /> salt<br>
+                    <input type="checkbox" id="Check3" value="beef" onclick="selectOnlyThis(this.id)"
+                        onchange="logJSONData()" /> Beef<br>
+                </form>
+            </div>
+
+            <div>
+                <form id="form3">
+                    Diet:<br>
+                    <input type="checkbox" id="diet1" value="vlees" onclick="selectOnlyThem(this.id)"
+                        onchange="logJSONData()" /> vlees<br>
+                    <input type="checkbox" id="diet2" value="vis" onclick="selectOnlyThem(this.id)"
+                        onchange="logJSONData()" /> vis<br>
+                    <input type="checkbox" id="diet3" value="vegetarisch" onclick="selectOnlyThem(this.id)"
+                        onchange="logJSONData()" /> vegetarisch<br>
+                    <input type="checkbox" id="diet4" value="veganistisch" onclick="selectOnlyThem(this.id)"
+                        onchange="logJSONData()" /> veganistisch<br>
+                    <input type="checkbox" id="diet5" value="lactosevrij" onclick="selectOnlyThem(this.id)"
+                        onchange="logJSONData()" /> lactosevrij<br>
+
+                </form>
+            </div>
+        </div>
+
+        <section id="gridclass" class="recipe-grid" onclick="location.href='Recepten.html'">
+
+        </section>
+
+    </div>
 
 
-<div id="demo">
+    <div id="demo">
 
-</div>
+    </div>
 
-<div class="scrolltest"></div>
+    <div class="scrolltest"></div>
 
 </body>
+
 </html>
 
 
 <style>
-    .test{
+    .test {
         background: #f06;
     }
 </style>
@@ -250,31 +275,29 @@ font-size: 12px;
 
 
 <script>
-localStorage.setItem("serialNumber", document.getElementById('search').value);
-console.log(localStorage.getItem("serialNumber"));
+    console.log(localStorage.getItem("serialNumber"));
     $(window).scroll(function () {
-            var height = $(window).scrollTop();
+        var height = $(window).scrollTop();
 
-            if (height > 450) {
-                $("nav.navbar").addClass("nav-achtergrond");
-            }else{
-                $("nav.navbar").removeClass("nav-achtergrond");
-            }
-        });
-    
+        if (height > 450) {
+            $("nav.navbar").addClass("nav-achtergrond");
+        } else {
+            $("nav.navbar").removeClass("nav-achtergrond");
+        }
+    });
+
     function checkButtonA() {
         localStorage.setItem("serialNumber", document.getElementById('search').value);
 
         document.getElementById("output").innerHTML +=
-        "<br> U heeft op knop A geklikt. ";
+            "<br> U heeft op knop A geklikt. ";
     }
-    
+
 
     async function logJSONData() {
         //document.getElementById("search").value = "location.href='recepten.html'"
         document.getElementById("refresh").onclick = "location.href='index.html'"
-        var x = document.getElementById("search").value;
-        console.log(x)
+
         const req = new Request("https://yc2304pythonbackend.azurewebsites.net/recipes")
         const response = await fetch(req);
         const textData = await response.text();
@@ -283,24 +306,27 @@ console.log(localStorage.getItem("serialNumber"));
         var filter2 = document.getElementById("prepRange").value;
         var form = document.getElementById('form1');
         var bbq = 1    //get reference to form      //get length of form.elements array
-        for(var k=0; k<form1.elements.length; k++) {     //loop through while i is less than array length
-        if(form1.elements[k].checked) {
-            console.log(form1.elements[k].value);
-            bbq = form1.elements[k].value;
-        }}
+        for (var k = 0; k < form1.elements.length; k++) {     //loop through while i is less than array length
+            if (form1.elements[k].checked) {
+                console.log(form1.elements[k].value);
+                bbq = form1.elements[k].value;
+            }
+        }
         var ingred = ""
-        for(var k=0; k<form2.elements.length; k++) {     //loop through while i is less than array length
-        if(form2.elements[k].checked) {
-            console.log(form2.elements[k].value);
-            ingred = form2.elements[k].value;
-        }}
+        for (var k = 0; k < form2.elements.length; k++) {     //loop through while i is less than array length
+            if (form2.elements[k].checked) {
+                console.log(form2.elements[k].value);
+                ingred = form2.elements[k].value;
+            }
+        }
 
         var diet = "vlees"
-        for(var k=0; k<form3.elements.length; k++) {     //loop through while i is less than array length
-        if(form3.elements[k].checked) {
-            console.log(form3.elements[k].value);
-            diet = form3.elements[k].value;
-        }}
+        for (var k = 0; k < form3.elements.length; k++) {     //loop through while i is less than array length
+            if (form3.elements[k].checked) {
+                console.log(form3.elements[k].value);
+                diet = form3.elements[k].value;
+            }
+        }
 
         document.getElementById("ratingLabel").innerHTML = `Rating: ` + filter + "/5";
         document.getElementById("prepLabel").innerHTML = `Preparation Time: ` + filter2 + ` Minuten`;
@@ -310,13 +336,13 @@ console.log(localStorage.getItem("serialNumber"));
         /*var element = document.getElementById("prevId");
         console.log(element)
         element.remove();*/
-        for(var i=0; i<jsonData.length; i++){
+        for (var i = 0; i < jsonData.length; i++) {
             jsonData[i]["3"] = jsonData[i]["3"].replace("PT", "")
             jsonData[i]["3"] = jsonData[i]["3"].replace("M", "")
             jsonData[i]["3"] = parseInt(jsonData[i]["3"])
             console.log(typeof jsonData[i]["3"])
             console.log(filter2)
-            if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter  &&  jsonData[i]["3"]<= filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet){
+            if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter && jsonData[i]["3"] <= filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet) {
                 gridclass.innerHTML += `<div id="prevId" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
@@ -333,10 +359,11 @@ console.log(localStorage.getItem("serialNumber"));
                     </div>
                     </div>
                 </div>`
-                
-        }}
-        for (var i=0; i<jsonData.length; i++){
-            if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter  &&  jsonData[i]["3"] < filter2 && jsonData[i]["4"].includes(ingred)  && jsonData[i]["10"] == diet){
+
+            }
+        }
+        for (var i = 0; i < jsonData.length; i++) {
+            if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter && jsonData[i]["3"] < filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet) {
                 var title = jsonData[i]["1"];
                 var image = jsonData[i]["8"];
                 var preptime = jsonData[i]["3"];
@@ -346,65 +373,117 @@ console.log(localStorage.getItem("serialNumber"));
                 //console.log(image);
                 //console.log(jsonData.length)
                 //console.log(jsonData[i]["4"])
-                document.getElementById("title"+i).innerHTML = title.replace("$", "'");
-                document.getElementById("image"+i).src = image;
-                document.getElementById("preptime"+i).innerHTML = "Preparation time: " + preptime +" Minutes"
-                document.getElementById("rating"+i).innerHTML = "Rating: " + rating;
-                
+                document.getElementById("title" + i).innerHTML = title.replace("$", "'");
+                document.getElementById("image" + i).src = image;
+                document.getElementById("preptime" + i).innerHTML = "Preparation time: " + preptime + " Minutes"
+                document.getElementById("rating" + i).innerHTML = "Rating: " + rating;
+
             }
         }
         return jsonData.length;
+
+
+    }
+
+    function handleKeyDown(event) {
+
+  if (event.keyCode === 13) {
+    zoekOpTitel(); // Roept de zoekfunctie aan wanneer Enter (keyCode 13) wordt ingedrukt
+  }
+}
+        
+    
+    async function zoekOpTitel() {
+        const req2 = new Request("https://yc2304pythonbackend.azurewebsites.net/recipes")
+        const response2 = await fetch(req2);
+        const textData2 = await response2.text();
+        const jsonData2 = JSON.parse(textData2);
+        var zoekterm = document.getElementById("searchBar").value;
+        var gridclass = document.getElementById("gridclass");
+        gridclass.innerHTML = ""; // Leeg de div voordat je nieuwe recepten toevoegt
+
+        for (var i = 0; i < jsonData2.length; i++) {
+            var title = jsonData2[i]["1"];
+
+
+            if (title.toLowerCase().includes(zoekterm.toLowerCase())) {
+                gridclass.innerHTML += `<div id="prevId" class="video-preview">
+                    <div class="thumbnail-row">
+                    <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
+                    <div id="title`+ i + `" class="video-time"></div>
+                    </div>
+                    <div class="video-info-grid">
+                    <div class="video-info">
+                        <p id = "preptime`+ i + `" class="video-title">
+                        </p>
+                        <p id="rating`+ i + `" class="video-author">
+                        </p>
+                        <p class="video-stats">
+                        </p>
+                    </div>
+                    </div>
+                </div>`
+                var image = jsonData2[i]["8"];
+                var preptime = jsonData2[i]["3"];   
+                var rating = jsonData2[i]["7"];
+                image = image.replace(/["]/g, '')
+                console.log(title.replace("$", "'"))
+                //console.log(image);
+                //console.log(jsonData.length)
+                //console.log(jsonData[i]["4"])
+                document.getElementById("title" + i).innerHTML = title.replace("$", "'");
+                document.getElementById("image" + i).src = image;
+                document.getElementById("preptime" + i).innerHTML = "Preparation time: " + preptime + " Minutes"
+                document.getElementById("rating" + i).innerHTML = "Rating: " + rating;
+            }
+        }
+    }
+        ratingRange.onclick = () => {
+            var myNode = document.getElementById("gridclass");
+            myNode.innerHTML = '';
         }
 
-ratingRange.onclick = () => {
-  var myNode = document.getElementById("gridclass");
-  myNode.innerHTML = '';
-}
+        prepRange.onclick = () => {
+            var myNode = document.getElementById("gridclass");
+            myNode.innerHTML = '';
+        }
 
-prepRange.onclick = () => {
-  var myNode = document.getElementById("gridclass");
-  myNode.innerHTML = '';
-}
+        form1.onclick = () => {
+            var myNode = document.getElementById("gridclass");
+            myNode.innerHTML = '';
+        }
 
-form1.onclick = () => {
-  var myNode = document.getElementById("gridclass");
-  myNode.innerHTML = '';
-}
+        form2.onclick = () => {
+            var myNode = document.getElementById("gridclass");
+            myNode.innerHTML = '';
+        }
 
-form2.onclick = () => {
-  var myNode = document.getElementById("gridclass");
-  myNode.innerHTML = '';
-}
+        form3.onclick = () => {
+            var myNode = document.getElementById("gridclass");
+            myNode.innerHTML = '';
+        }
 
-form3.onclick = () => {
-  var myNode = document.getElementById("gridclass");
-  myNode.innerHTML = '';
-}
+        function selectOnlyThis(id) {
+            for (var i = 1; i <= 3; i++) {
+                document.getElementById("Check" + i).checked = false;
+            }
+            document.getElementById(id).checked = true;
+        }
 
-function selectOnlyThis(id) {
-    for (var i = 1;i <= 3; i++)
-    {
-        document.getElementById("Check" + i).checked = false;
-    }
-    document.getElementById(id).checked = true;
-}
+        function selectOnlyThat(id) {
+            for (var i = 1; i <= 3; i++) {
+                document.getElementById("bbq" + i).checked = false;
+            }
+            document.getElementById(id).checked = true;
+        }
 
-function selectOnlyThat(id) {
-    for (var i = 1;i <= 3; i++)
-    {
-        document.getElementById("bbq" + i).checked = false;
-    }
-    document.getElementById(id).checked = true;
-}
+        function selectOnlyThem(id) {
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById("diet" + i).checked = false;
+            }
+            document.getElementById(id).checked = true;
+        }
 
-function selectOnlyThem(id) {
-    for (var i = 1;i <= 5; i++)
-    {
-        document.getElementById("diet" + i).checked = false;
-    }
-    document.getElementById(id).checked = true;
-}
-
-//kaas = document.getElementById("Search").value;
-window.onload = logJSONData
+        //kaas = document.getElementById("Search").value;
+        window.onload = logJSONData
 </script>
