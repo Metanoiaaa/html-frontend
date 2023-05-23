@@ -29,13 +29,8 @@
     .col {
       border: 0px solid #000;
     }
-
-    
-
-
-
-
   </style>
+
   <div class="container-fluid onze-header">
 
 
@@ -171,7 +166,8 @@
         DateCreate: DateCreateInvoer,
         ProfilePicture: ProfilePictureInvoer,
         Password: PasswordInvoer,
-      };
+      }; 
+      console.log(JSON.stringify(NewUser))
 
       fetch('https://yc2304csharp.azurewebsites.net/api/User', {
         method: "POST",
@@ -189,6 +185,7 @@
       //  alert("Er is iets fouts gegaan");
       // });
     }
+   
 
 
 
