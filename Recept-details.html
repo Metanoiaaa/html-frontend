@@ -114,14 +114,14 @@
             <h1>
               <!-- Receptnaam -->
               <div class="mb">
-                <input type="text-h1" class="form-control-plaintext" id="title-input" name="title" placeholder="title komt hier."disabled readonly>
+                <input type="text-h1" class="form-control-plaintext" id="1-input" name="title" placeholder="title komt hier."disabled readonly>
               </div>
 
       <div class="container text-left">
         <div class="row">
           <div class="col-sm-6">
             <!-- <img src="./img/header.jpg" style="object-fit:cover; width:600px; height:600px"> -->
-            <input type="image" id="foto-input" style="object-fit:cover; width:600px; height:600px">
+            <input type="image" id="8-input" style="object-fit:cover; width:600px; height:600px" src="8-input">
             <!-- Level 1: .col-sm-6 -->
               <div class="row">
                 <div class="col-sm-4">
@@ -137,7 +137,7 @@
                   </div>
                   Gepubliceerd op:
                   <div class="mb-3">
-                    <input type="text" class="form-control-plaintext" id="dateCreate-input" name="dateCreate" placeholder="dateCreate wordt hier geladen."disabled readonly><br>
+                    <input type="text" class="form-control-plaintext" id="11-input" name="dateCreate" placeholder="dateCreate wordt hier geladen."disabled readonly><br>
                   </div>
                   <!-- <br>
                   Laatst geupdate op: dag-maand-jaar -->
@@ -192,7 +192,7 @@
                       </div>
                       
                       <div class="col-3">
-                        <input type="text" class="form-control" id="prepTime-input" aria-label="Amount (to the nearest dollar)" disabled readonly>
+                        <input type="text" class="form-control" id="3-input" aria-label="Amount (to the nearest dollar)" disabled readonly>
                       </div>
 
                       <div class="input-group-append">
@@ -202,25 +202,23 @@
 
                     <div class="col-auto">
                       <div class="col-sm-4"><h2>Barbecue</h2>
-                        <input type="text" class="form-control-plaintext" id="bbqId-input" name="bbqId-input" placeholder="bbqId komt hier."disabled readonly><br>
+                        <input type="text" class="form-control-plaintext" id="6-input" name="bbqId-input" placeholder="bbqId komt hier."disabled readonly><br>
                       </div>
                     </div>
 
                     <div class="col-auto">
                       <div class="col-sm-6"><h2>Dieet</h2>
-                        <input type="text" class="form-control-plaintext" id="diet-input" name="diet" placeholder="diet komt hier."disabled readonly><br>
+                        <input type="text" class="form-control-plaintext" id="10-input" name="diet" placeholder="diet komt hier."disabled readonly><br>
                       </div>
                     </div>
                     <div class="col"><h2>Ingredienten</h2>
-                        <!-- <ul>
-                            <li>Boter</li>
-                            <li>Kaas</li>
-                            <li>Eieren</li>
-                        </ul> -->
+                      <input type="text" class="form-control-plaintext" id="10-input" name="diet" placeholder="diet komt hier."disabled readonly><br>
+          
+                     
                       <br>
                     </div>
                     <div class="col"><h2>Kookgereedschap</h2>
-                        <input type="text" class="form-control-plaintext" id="cookAttireId-input" name="cookAttireId-input" placeholder="cookAttireId komt hier." disabled readonly><br>
+                        <input type="text" class="form-control-plaintext" id="5-input" name="cookAttireId-input" placeholder="cookAttireId komt hier." disabled readonly><br>
                     </div>
                   </div>                
               </div>
@@ -230,14 +228,14 @@
                 <div class="row row-cols-1">
                     <div class="col"><h2>Introductie</h2>
                       <div class="mb-3">
-                        <textarea readonly class="form-control-plaintext" placeholder="intro komt hier" id="intro-input" style="height: auto" disabled readonly></textarea>
+                        <textarea readonly class="form-control-plaintext" placeholder="intro komt hier" id="9-input" style="height: auto" disabled readonly></textarea>
                         <!-- <input type="text" class="form-control-plaintext" style="object-fit:contain; width:600px; height:auto" id="intro-input" name="intro" placeholder="Introductie komt hier."disabled readonly><br> -->
                       </div>
                       <!-- Bim, bam, beieren, de koster lust geen eieren. Wat lust hij dan? Spek in de pan. O, zoo'n lekkere koster dan! -->
                     </div>
                     <div class="col"><h2>Bereiding</h2>
                       <div class="form-floating mb-3">
-                        <textarea readonly class="form-control-plaintext" placeholder="prepText komt hier" id="prepText-input" style="height: 750px" disabled readonly></textarea>
+                        <textarea readonly class="form-control-plaintext" placeholder="prepText komt hier" id="4-input" style="height: 750px" disabled readonly></textarea>
                         <!-- <input type="textarea" rows="25" wrap="hard" class="form-control" id="prepText-input" name="prepText" placeholder="prepText komt hier."><br> -->
                       </div>
                   </div> 
@@ -343,33 +341,58 @@
     
         // FILL RECIPE FORM
         function showUpdateRecipe() {
-          // Haal het formulier op
-         var receptID = document.getElementById("id").value
-         console.log(receptID);
-    
-          var xhttp = new XMLHttpRequest();
-           xhttp.onreadystatechange = function (){
-            if (this.readyState == 4 && this.status == 200) { var response = JSON.parse(xhttp.responseText);
-             console.log(response[receptID]) }
-             var geladenRecept = response[receptID]
-            //  console.log(typeof geladenRecept)
-             Object.entries(geladenRecept).forEach(element => {
-              const [key, value]=element
-              console.log(key,value)
-                try {
-                  document.getElementById(key + "-input").value = value
-                  console.log(element)
-              } catch (error) {
-                  console.log(error)
-              }
-             });
-            };
-            xhttp.open("GET", "https://localhost:7042/api/Recepten", true);
-             xhttp.send();
-          var recipeForm = document.getElementById("UpdateRecipeTable");
-          UpdateRecipeTable.style.display = "block";
-          // myFunction();
+  // Haal het formulier op
+  var ReceptID = sessionStorage.getItem('recipeId');
+  console.log(ReceptID);
+  var receptID = parseInt(ReceptID);
+  
+  var adjustedReceptId = receptID - 1;
+  console.log(typeof adjustedReceptId);
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(xhttp.responseText);
+      console.log(response[adjustedReceptId]);
+
+      var geladenRecept = response[adjustedReceptId];
+      Object.entries(geladenRecept).forEach(element => {
+        var [key, value] = element;
+        console.log(key, value);
+        key=parseInt(key) 
+        try {
+          document.getElementById(key + "-input").value = value;
+
+          if(
+            key == 3
+          ) {
+            value = value.replace("PT", "")             
+            value = value.replace("M", "")
+            document.getElementById(key + "-input").value = value;
+          }
+
+          if (
+            key == 8  
+          ) {
+            value = value.replace(/["]/g, '')
+            console.log(value)
+            document.getElementById(key + "-input").src = value          
+          }
+
+            
+          
+          console.log(element);
+        } catch (error) {
+          console.log(error);
         }
+      });
+    }
+  };
+  xhttp.open("GET", "https://yc2304pythonbackend.azurewebsites.net/recipes", true);
+  xhttp.send();
+  // myFunction();
+}
+
     
         function updateRecipe() {
           //Haal de gegevens van de gebruiker op uit de inputvelden
@@ -413,10 +436,10 @@
             newRecept.dateCreate = document.getElementById("dateCreate-input").value;
           }
           console.log(JSON.stringify(newRecept))
-          console.log('https://localhost:7042/api/Recepten/' + receptId)
+          console.log('https://yc2304pythonbackend.azurewebsites.net/recipes/' + receptId)
     
           // Stuur de gegevens naar de backend via de Fetch API
-          fetch('https://localhost:7042/api/Recepten/' + receptId, {
+          fetch('https://yc2304pythonbackend.azurewebsites.net/recipes/' + receptId, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
@@ -436,7 +459,7 @@
         }
     
         function veldenVullen() {
-          fetch('https://localhost:7042/api/Recepten/')
+          fetch('https://yc2304pythonbackend.azurewebsites.net/recipes/')
             .then(res => {
               return res.json();
             })
@@ -453,7 +476,7 @@
           var query = "DELETE FROM table_name WHERE id = " + recipeId;
     
           // Verwijder de gebruiker met behulp van Fetch API
-          fetch('https://localhost:7042/api/Recepten/' + recipeId, {
+          fetch('https://yc2304pythonbackend.azurewebsites.net/recipes/' + recipeId, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
@@ -470,6 +493,11 @@
             .catch(error => {
               console.error('Fout bij het verwijderen van het recept:', error);
             });
+        }
+        window.onload = showUpdateRecipe
+
+        function showFoto() {
+
         }
       </script>
 </body>

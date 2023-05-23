@@ -247,7 +247,7 @@
             </div>
         </div>
 
-        <section id="gridclass" class="recipe-grid" onclick="location.href='Recepten.html'">
+        <section id="gridclass" class="recipe-grid">
 
         </section>
 
@@ -295,6 +295,7 @@
 
 
     async function logJSONData() {
+
         //document.getElementById("search").value = "location.href='recepten.html'"
         document.getElementById("refresh").onclick = "location.href='index.html'"
 
@@ -343,13 +344,13 @@
             console.log(typeof jsonData[i]["3"])
             console.log(filter2)
             if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter && jsonData[i]["3"] <= filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet) {
-                gridclass.innerHTML += `<div id="prevId" class="video-preview">
+                gridclass.innerHTML += `<div id="prevId` + i + `" value="prevId` + i + `" class="video-preview" onclick="localStorageId(this.id)">`+i+`
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
                     <div id="title`+ i + `" class="video-time"></div>
                     </div>
                     <div class="video-info-grid">
-                    <div class="video-info">
+                    <div class="video-info">    
                         <p id = "preptime`+ i + `" class="video-title">
                         </p>
                         <p id="rating`+ i + `" class="video-author">
@@ -362,6 +363,7 @@
 
             }
         }
+
         for (var i = 0; i < jsonData.length; i++) {
             if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter && jsonData[i]["3"] < filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet) {
                 var title = jsonData[i]["1"];
@@ -380,19 +382,20 @@
 
             }
         }
-        return jsonData.length;
 
+        return jsonData.length;
+        localStorageID(i)
 
     }
 
     function handleKeyDown(event) {
 
-  if (event.keyCode === 13) {
-    zoekOpTitel(); // Roept de zoekfunctie aan wanneer Enter (keyCode 13) wordt ingedrukt
-  }
-}
-        
-    
+        if (event.keyCode === 13) {
+            zoekOpTitel(); // Roept de zoekfunctie aan wanneer Enter (keyCode 13) wordt ingedrukt
+        }
+    }
+
+
     async function zoekOpTitel() {
         const req2 = new Request("https://yc2304pythonbackend.azurewebsites.net/recipes")
         const response2 = await fetch(req2);
@@ -407,7 +410,7 @@
 
 
             if (title.toLowerCase().includes(zoekterm.toLowerCase())) {
-                gridclass.innerHTML += `<div id="prevId" class="video-preview">
+                gridclass.innerHTML += `<div id="prevId` + i + `" value="prevId` + i + `" class="video-preview" onclick="localStorageId(this.id)">`+i+`
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
                     <div id="title`+ i + `" class="video-time"></div>
@@ -424,7 +427,7 @@
                     </div>
                 </div>`
                 var image = jsonData2[i]["8"];
-                var preptime = jsonData2[i]["3"];   
+                var preptime = jsonData2[i]["3"];
                 var rating = jsonData2[i]["7"];
                 image = image.replace(/["]/g, '')
                 console.log(title.replace("$", "'"))
@@ -438,52 +441,58 @@
             }
         }
     }
-        ratingRange.onclick = () => {
-            var myNode = document.getElementById("gridclass");
-            myNode.innerHTML = '';
-        }
+    function localStorageId(id) {
+        console.log(document.getElementById(id).innerHTML)
+        sessionStorage.setItem("recipeId", document.getElementById(id).innerHTML)
+        window.location.href = 'Recept-details.html'
+    }       
+    
+    ratingRange.onclick = () => {
+        var myNode = document.getElementById("gridclass");
+        myNode.innerHTML = '';
+    }
 
-        prepRange.onclick = () => {
-            var myNode = document.getElementById("gridclass");
-            myNode.innerHTML = '';
-        }
+    prepRange.onclick = () => {
+        var myNode = document.getElementById("gridclass");
+        myNode.innerHTML = '';
+    }
 
-        form1.onclick = () => {
-            var myNode = document.getElementById("gridclass");
-            myNode.innerHTML = '';
-        }
+    form1.onclick = () => {
+        var myNode = document.getElementById("gridclass");
+        myNode.innerHTML = '';
+    }
 
-        form2.onclick = () => {
-            var myNode = document.getElementById("gridclass");
-            myNode.innerHTML = '';
-        }
+    form2.onclick = () => {
+        var myNode = document.getElementById("gridclass");
+        myNode.innerHTML = '';
+    }
 
-        form3.onclick = () => {
-            var myNode = document.getElementById("gridclass");
-            myNode.innerHTML = '';
-        }
+    form3.onclick = () => {
+        var myNode = document.getElementById("gridclass");
+        myNode.innerHTML = '';
+    }
 
-        function selectOnlyThis(id) {
-            for (var i = 1; i <= 3; i++) {
-                document.getElementById("Check" + i).checked = false;
-            }
-            document.getElementById(id).checked = true;
+    function selectOnlyThis(id) {
+        for (var i = 1; i <= 3; i++) {
+            document.getElementById("Check" + i).checked = false;
         }
+        document.getElementById(id).checked = true;
+    }
 
-        function selectOnlyThat(id) {
-            for (var i = 1; i <= 3; i++) {
-                document.getElementById("bbq" + i).checked = false;
-            }
-            document.getElementById(id).checked = true;
+    function selectOnlyThat(id) {
+        for (var i = 1; i <= 3; i++) {
+            document.getElementById("bbq" + i).checked = false;
         }
+        document.getElementById(id).checked = true;
+    }
 
-        function selectOnlyThem(id) {
-            for (var i = 1; i <= 5; i++) {
-                document.getElementById("diet" + i).checked = false;
-            }
-            document.getElementById(id).checked = true;
+    function selectOnlyThem(id) {
+        for (var i = 1; i <= 5; i++) {
+            document.getElementById("diet" + i).checked = false;
         }
+        document.getElementById(id).checked = true;
+    }
 
-        //kaas = document.getElementById("Search").value;
-        window.onload = logJSONData
+    //kaas = document.getElementById("Search").value;
+    window.onload = logJSONData
 </script>
