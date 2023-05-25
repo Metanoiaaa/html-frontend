@@ -156,20 +156,20 @@
       let ProfilePictureInvoer = document.getElementById('profilepicture').value;
 
       let NewUser = {
-        Firstname: FirstnameInvoer,
-        Lastname: LastnameInvoer,
-        Username: UsernameInvoer,
-        Email: EmailInvoer,
-        DateofBirth: DateofBirthInvoer,
-        Uploads: UploadsInvoer,
-        Bio: BioInvoer,
-        DateCreate: DateCreateInvoer,
-        ProfilePicture: ProfilePictureInvoer,
-        Password: PasswordInvoer,
+        firstname: FirstnameInvoer,
+        lastname: LastnameInvoer,
+        username: UsernameInvoer,
+        email: EmailInvoer,
+        dateofBirth: DateofBirthInvoer,
+        uploads: UploadsInvoer,
+        bio: BioInvoer,
+        dateCreate: DateCreateInvoer,
+        profilePicture: ProfilePictureInvoer,
+        password: PasswordInvoer,
       }; 
       console.log(JSON.stringify(NewUser))
 
-      fetch('https://yc2304csharp.azurewebsites.net/api/User', {
+      fetch('https://localhost:7042/api/User', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

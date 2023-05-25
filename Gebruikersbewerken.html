@@ -219,9 +219,10 @@
         xhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
             var response = JSON.parse(xhttp.responseText);
-            console.log(response[adjustedUserId]);
+            console.log(response);
 
-            var geladenUser = response[adjustedUserId];
+            var geladenUser = response;
+            console.log(geladenUser);
             Object.entries(geladenUser).forEach(element => {
               const [key, value] = element;
               console.log(key, value);
@@ -234,7 +235,8 @@
             });
           }
         };
-        xhttp.open("GET", "https://yc2304csharp.azurewebsites.net/api/User", true);
+        console.log( "https://localhost:7042/api/User/" + userId)
+        xhttp.open("GET", "https://localhost:7042/api/User/" + userId, true);
         xhttp.send();
 
         var UserForm = document.getElementById("UpdateUserTable");
@@ -276,7 +278,7 @@
         console.log(JSON.stringify(NewUser))
 
         // Stuur de gegevens naar de backend via de Fetch API
-        fetch('https:yc2304csharp.azurewebsites.net/api/User/' + userId, {
+        fetch('https://localhost:7042/api/User/' + userId, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -303,7 +305,7 @@
         var query = "DELETE FROM table_name WHERE id = " + User_ID;
 
         // Verwijder de gebruiker met behulp van Fetch API
-        fetch('https:yc2304csharp.azurewebsites.net/api/User/' + User_ID, {
+        fetch('https://localhost:7042/api/User/' + User_ID, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

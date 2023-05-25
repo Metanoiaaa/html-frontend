@@ -174,9 +174,9 @@
 
     <script>
       function fetchUserDetails() {
-        var userId = 1;
+        var userId = 3;
 
-        fetch(`https://yc2304csharp.azurewebsites.net/api/User/${userId}`)
+        fetch(`https://localhost:7042/api/User/${userId}`)
           .then(response => response.json())
           .then(data => {
             document.getElementById("firstname").textContent = data.firstname;
