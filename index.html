@@ -32,17 +32,17 @@
         .wrapper {
             width: 90%;
             padding: 10px;
-        }
+                    }
 
         .recipe-grid {
             display: grid;
             position: relative;
             background-color: 1, 0, 0, 0.7;
             left: 200px;
-            ;
+            right: 100px;
             grid-template-columns: 1fr 1fr 1fr;
-            column-gap: 16px;
-            row-gap: 40px;
+            column-gap: 50px;
+            row-gap: 30px;
             z-index: 0;
         }
 
@@ -70,7 +70,7 @@
         }
 
         .sidebar {
-            height: 60%;
+            height: 110%;
             width: 200px;
             position: absolute;
             opacity: 100%;
@@ -78,8 +78,8 @@
             top: 0;
             padding-top: 40px;
             background-color: 1, 0, 0, 0.7;
-            margin-top: 600px;
-            overflow: scroll;
+            margin-top: 500px;
+            overflow: auto;
             z-index: 0;
         }
 
@@ -115,11 +115,16 @@
         .sidebar-link div {
             font-size: 10px;
         }
+
+        .dropdown-menu {
+            left: auto !important;
+            right: 0 !important;
+        }
     </style>
     <div class="container-fluid onze-header">
 
 
-        <nav class="navbar navbar-expand">
+        <nav class="navbar navbar-expand" style="z-index:1">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
                     <img src="img/logo.png" class="img-fluid logo" alt="Recepten Database" />
@@ -172,7 +177,7 @@
                 <div class="input-group">
                     <span for="search" id="refresh" class="input-group-text"><i
                             class="fa-solid fa-magnifying-glass"></i></span>
-                    <input id="searchBar" type="text" class="form-control" placeholder=""
+                    <input id="searchBar" type="text" class="form-control" placeholder="Zoek recept.."
                         onkeydown='handleKeyDown(event)'>
                 </div>
             </div>
@@ -247,9 +252,11 @@
             </div>
         </div>
 
-        <section id="gridclass" class="recipe-grid">
 
-        </section>
+            <section id="card" class="recipe-grid">
+
+            </section>
+
 
     </div>
 
@@ -331,6 +338,8 @@
 
         document.getElementById("ratingLabel").innerHTML = `Rating: ` + filter + "/5";
         document.getElementById("prepLabel").innerHTML = `Preparation Time: ` + filter2 + ` Minuten`;
+        var card = document.getElementById("card");
+        card.innerHTML = ""; // Leeg de div voordat je nieuwe recepten toevoegt
 
         //console.log(filter)
         //var gridclass = document.getElementById("gridclass");
@@ -344,22 +353,24 @@
             console.log(typeof jsonData[i]["3"])
             console.log(filter2)
             if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter && jsonData[i]["3"] <= filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet) {
-                gridclass.innerHTML += `<div id="prevId` + i + `" value="prevId` + i + `" class="video-preview" onclick="localStorageId(this.id)">`+i+`
+                card.innerHTML += `<span id="card` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id)">`+i+`
+                    <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
-                    <div id="title`+ i + `" class="video-time"></div>
+                    <div id="title`+ i + `" class="video-time" style="font-size:16px; display:block" ></div>
                     </div>
                     <div class="video-info-grid">
                     <div class="video-info">    
-                        <p id = "preptime`+ i + `" class="video-title">
+                        <p id = "preptime`+ i + `" class="video-title" style="font-size:16px">
                         </p>
-                        <p id="rating`+ i + `" class="video-author">
+                        <p id="rating`+ i + `" class="video-author" style="font-size:16px">
                         </p>
                         <p class="video-stats">
                         </p>
                     </div>
                     </div>
-                </div>`
+                </div>
+                </span>`
 
             }
         }
@@ -402,30 +413,32 @@
         const textData2 = await response2.text();
         const jsonData2 = JSON.parse(textData2);
         var zoekterm = document.getElementById("searchBar").value;
-        var gridclass = document.getElementById("gridclass");
-        gridclass.innerHTML = ""; // Leeg de div voordat je nieuwe recepten toevoegt
+        var card = document.getElementById("card");
+        card.innerHTML = ""; // Leeg de div voordat je nieuwe recepten toevoegt
 
         for (var i = 0; i < jsonData2.length; i++) {
             var title = jsonData2[i]["1"];
 
 
             if (title.toLowerCase().includes(zoekterm.toLowerCase())) {
-                gridclass.innerHTML += `<div id="prevId` + i + `" value="prevId` + i + `" class="video-preview" onclick="localStorageId(this.id)">`+i+`
+                card.innerHTML += `<span id="card` + i + `" class="input-group-text"  style="background-color: darkgrey; display: block; width:400px border-radius:50px" onclick="localStorageId(this.id)">`+i+`
+                    <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
-                    <div id="title`+ i + `" class="video-time"></div>
+                    <div id="title`+ i + `" class="video-time" style="font-size:16px; display:block"></div>
                     </div>
                     <div class="video-info-grid">
                     <div class="video-info">
-                        <p id = "preptime`+ i + `" class="video-title">
+                        <p id = "preptime`+ i + `" class="video-title" style="font-size:16px">
                         </p>
-                        <p id="rating`+ i + `" class="video-author">
+                        <p id="rating`+ i + `" class="video-author" style="font-size:16px">
                         </p>
                         <p class="video-stats">
                         </p>
                     </div>
                     </div>
-                </div>`
+                </div>
+                </span>`
                 var image = jsonData2[i]["8"];
                 var preptime = jsonData2[i]["3"];
                 var rating = jsonData2[i]["7"];
