@@ -71,17 +71,40 @@
     
   <h1 style="text-align: center;">Mijn receptenoverzicht</h1>
 
-  <table class="table table-striped" id="recepts-table"></table>
+  <button onclick="recepten_zien()">Laat recepten zien</button>
 
-  <button onclick="loadRecepts()">Laat recepten zien</button>
-
-  <button onclick="loadRecepts()">Verwijderen</button>
+  <button onclick="recepten_verwijderen()">Verwijderen</button>
   <button onclick="loadRecepts()">Bewerken</button>
+
+ 
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">rijnum</th>
+          <th scope="col">id</th>
+          <th scope="col">Titel</th>
+          <th scope="col">userId</th>
+          <th scope="col">Bereidingstijd</th>
+          <th scope="col">Bereiding</th>
+          <th scope="col">HulpmiddelId</th>
+          <th scope="col">bbqId</th>
+          <th scope="col">Rating</th>
+          <th scope="col">Foto</th>
+          <th scope="col">Intro</th>
+          <th scope="col">Aanmaakdatum</th>
+        </tr>
+      </thead>
+      <tbody id="tablenice">
+        
+      </tbody>
+    </table>
+  <table class="table table-striped" id="recepts-table">
+  </table>
 
   <div class="table">
     <label for="id">ReceptID:</label>
     <input type="text" id="id" name="id" placeholder="Vul ReceptID in."><br><br>
-    <button type = "submit" onclick="showUpdateRecipe()">Laad recept</button>
+    <button type = "submit" onclick="recepten_zien()">Laad recept</button>
     <br><br>
   </div>
 
@@ -91,6 +114,44 @@
   <div id="divjepython"></div>      
     
   <script>
+        $(window).scroll(function () {
+        var height = $(window).scrollTop();
+
+        if (height > 450) {
+            $("nav.navbar").addClass("nav-achtergrond");
+        } else {
+            $("nav.navbar").removeClass("nav-achtergrond");
+        }
+    });
+
+    async function recepten_zien(){
+      const receptenreq = new Request("https://localhost:7042/api/Recepten");
+      const responserec = await fetch(receptenreq);
+      const textDatarec = await responserec.text();
+      const jsonDatarec = JSON.parse(textDatarec);
+      console.log(jsonDatarec)
+      let recept = document.getElementById("tablenice")
+      recept.innerHtml =''
+      
+      for(let i=0; i < jsonDatarec.length; i++){
+          console.log(jsonDatarec[i].title)
+          recept.innerHTML += `<tr>
+          <th scope="row">`+ i + `</th>
+          <td>`+ jsonDatarec[i].id+ `</td>
+          <td>`+ jsonDatarec[i].title+ `</td>
+          <td>`+ jsonDatarec[i].userId+ `</td>
+          <td>`+ jsonDatarec[i].prepTime+ `</td>
+          <td>`+ jsonDatarec[i].prepText+ `</td>
+          <td>`+ jsonDatarec[i].cookAttireId+ `</td>
+          <td>`+ jsonDatarec[i].bbqId+ `</td>
+          <td>`+ jsonDatarec[i].rating+ `</td>
+          <td>`+ jsonDatarec[i].foto+ `</td>
+          <td>`+ jsonDatarec[i].intro+ `</td>
+          <td>`+ jsonDatarec[i].dateCreate+ `</td>
+        </tr>`
+          ;};
+    }
+    window.onload = recepten_zien
     function toon_allerecepten() {
       fetch("https://yc2304csharp.azurewebsites.net")
         .then(pullrecepts => pullrecepts.json())
@@ -114,79 +175,13 @@
       document.getElementById("divjepython").innerHTML = data.recipe_title[0];
     }
 
-    function loadRecepts() {
-      fetch("https://yc2304pythonbackend.azurewebsites.net/recipes")
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
 
-          let tableHtml = '';
-
-          data.forEach(recept => {
-            if (data[1] == document.getElementById("id").value){
-              tableHtml += `
-                <tr>
-                  <td>${recept.recipeID}</td>
-                  <td>${recept.recipeTitle}</td>
-                  <td>${recept.userId}</td>
-                  <td>${recept.prepTime}</td>
-                  <td>${recept.prepText}</td>
-                  <td>${recept.cookAttireId}</td>
-                  <td>${recept.bbqId}</td>
-                  <td>${recept.rating}</td>
-                  <td>${recept.foto}</td>
-                  <td>${recept.intro}</td>
-                  <td>${recept.dateCreate}</td>
-                </tr>
-              `;}
-          });
-
-          document.getElementById('recepts-table').innerHTML = tableHtml;
-        });
-    }
-
-    loadRecepts();
 
 
         // FILL RECIPE FORM
-  function showUpdateRecipe() {
-    // Haal het formulier op
-    var receptID = parseInt(document.getElementById("id").value);
-    var adjustedReceptID = receptID - 1; // Verminder userId met 1
-
-      console.log(adjustedReceptID);
-
-    var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function (){
-      if (this.readyState == 4 && this.status == 200) { var response = JSON.parse(xhttp.responseText);
-        console.log(response[adjustedReceptID]) }
-
-        var geladenRecept = response[adjustedReceptID]
-      //  console.log(typeof geladenRecept)
-        Object.entries(geladenRecept).forEach(element => {
-        const [key, value]=element;
-        console.log(key,value);
-          try {
-            document.getElementById(key + "-input").value = value;
-            console.log(element);
-          } catch (error) {
-            console.log(error);
-          }
-        });
-      };
-      xhttp.open("GET", "https://yc2304pythonbackend.azurewebsites.net/recipes", true);
-        xhttp.send();
-    var recipeForm = document.getElementById("UpdateRecipeTable");
-    UpdateRecipeTable.style.display = "block";
-
-    // myFunction();
-  }
+  
 
   </script>
 
 </body>
 </html>
-
-Een invoer vuld met de user id 
-
-Wacht op Charp API
