@@ -114,23 +114,11 @@
           <label for="recipeTitle-input" class="form-label">Naam recept</label>
           <input type="text" class="form-control" id="recipeTitle-input" placeholder="Vul hier een receptnaam in.">
 
-
           <label for="prepTime-input" class="form-label">Bereidingstijd</label>
           <input type="number" class="form-control" id="prepTime-input" placeholder="Vul hier de Bereidingstijd in.">
 
-          <div style="display: none;">
-            <label for="rating-input" class="form-label">Rating</label>
-            <input type="number" class="form-control" id="rating-input" placeholder="Vul hier de rating in." value="0">
-          </div>
-
-
-          <label for="bbqId-input" class="form-label">Type BBQ</label>
-          <input type="number" class="form-control" id="bbqId-input" placeholder="Vul hier het type barbecue in.">
-
-
           <label for="intro-input" class="form-label">Introductie</label>
           <input type="text" class="form-control" id="intro-input" placeholder="Vul hier de introductie in.">
-
 
           <label for="userId-input" class="form-label">Geupload door</label>
           <input type="text" class="form-control" id="userId-input" placeholder="Vul hier de UserID in.">
@@ -138,168 +126,108 @@
           <label for="dateCreate-input" class="form-label">Aangemaakt op</label>
           <input type="text" class="form-control" id="dateCreate-input" placeholder="Vul hier de aanmaakdatum in.">
 
-
           <label for="foto-input" class="form-label">Foto recept</label>
           <input type="text" class="form-control" id="foto-input" placeholder="Voer hier de url naar de foto in.">
 
           <label for="dieet-input" class="form-label">Type dieet</label>
           <input type="text" class="form-control" id="dieet-input" placeholder="Voer hier het type dieet in.">
 
+          <div style="display: none" ; id="opgeslagenreceptid"></div>
+
         </div>
         <div class="col">
           <label for="prepText-input" class="form-label">Instructies</label>
           <div id="input-container">
-            <input type="text" class="form-control" id="prepText-input" placeholder="Vul hier stap 1 van de instructies in..">
+            <textarea type="text" class="form-control" id="prepText-input" placeholder="Vul hier de instructies in..">
+            </textarea>
           </div>
           <button class="btn btn-success btn-sm extra-stap-knop" id="add-step-button" onclick="addStep()">+</button>
           <div id="input-container2">
             <label for="ingredienten-input" class="form-label">ingredienten</label>
-            <input type="number" class="form-control" id="ingredienten-input"
+            <input type="text" class="form-control ingevoerdeIngredienten"
               placeholder="Vul hier een ingredient in met de hoeveelheid..">
           </div>
-          <button class="btn btn-success btn-sm extra-stap-knop" id="add-step-button" onclick="addIngredient()">+</button>
-
-          <label for="cookAttireId-input" class="form-label">Benodigdheden</label>
-          <div id="input-container3">
-            <input type="number" class="form-control" id="cookAttireId-input" placeholder="Vul hier de benodigdheden in..">
-          </div>
-          <button class="btn btn-success btn-sm extra-stap-knop" id="add-step-button" onclick="addBenodigheden()">+</button>
-
-
-
+          <button class="btn btn-success btn-sm extra-stap-knop" id="add-step-button"
+            onclick="addIngredientfield()">+</button>
+          <button class="btn btn-success btn-sm" onclick="voegIngredientToe()">Ingredienten toevoegen aan het
+            recept</button>
         </div>
 
       </div>
     </div>
     <div class="button-wrapper">
-      <button type="button" class="btn btn-success" onclick="createRecept()">Recept opslaan</button>
+      <button type="button" class="btn btn-success" onclick="haalop()">Recept opslaan</button>
       <button type="button" class="btn btn-danger" onclick="location.href='index.html'">Annuleren</button>
     </div>
 
     <script>
-      function addStep() {
-        var inputContainer = document.getElementById("input-container");
-        var newInput = document.createElement("input");
-        newInput.type = "text";
-        newInput.className = "form-control";
-        newInput.placeholder = "Vul hier de volgende stap van de instructies in..";
-        inputContainer.appendChild(newInput);
+
+      function haalop() {
+        var recept = {};
+        recept.title = document.getElementById('recipeTitle-input').value;
+        recept.Diet = document.getElementById('dieet-input').value;
+        recept.Foto = document.getElementById('foto-input').value;
+        recept.Intro = document.getElementById('intro-input').value;
+        recept.PrepText = document.getElementById('prepText-input').value;
+        recept.DateCreate = document.getElementById('dateCreate-input').value;
+        recept.RecipeIngredients = []
+        var data = JSON.stringify(recept)
+        console.log(data)
+
+        fetch("https://localhost:7042/api/Recepten", {
+          headers: {
+            'Content-type': 'application/json'
+          },
+          method: 'POST',
+          body: data
+        })
+          .then(res => res.text())
+          .then(d => verkrijgid(d))
       }
 
-      function addIngredient() {
+      function verkrijgid(recept) {
+        console.log("y verkrijg id" + recept);
+        document.getElementById("opgeslagenreceptid").value = recept;
+
+      }
+
+
+
+      function voegIngredientToe() {
+        var receptid = document.getElementById("opgeslagenreceptid").value;
+        var ingredienten = document.getElementsByClassName("ingevoerdeIngredienten");
+
+        for (var i = 0; i < ingredienten.length; i++) {
+          var ingredientnaam = ingredienten[i].value;
+          console.log(ingredientnaam);
+
+          var naardbjson = {};
+          naardbjson.receptid = receptid;
+          naardbjson.ingredientnaam = ingredientnaam;
+          naardbjson = JSON.stringify(naardbjson);
+          console.log(naardbjson);
+
+          fetch("https://localhost:7042/api/Ingredienten/voegtoe", {
+            headers: {
+              'Content-type': 'application/json'
+            },
+            method: 'POST',
+            body: naardbjson
+          })
+            .then(r => alert("opgeslagen"));
+        }
+      }
+
+
+      function addIngredientfield() {
         var inputContainer = document.getElementById("input-container2");
         var newInput = document.createElement("input");
         newInput.type = "text";
-        newInput.className = "form-control";
+        newInput.className = "form-control ingevoerdeIngredienten";
         newInput.placeholder = "Vul hier een ingredient in met de hoeveelheid..";
         inputContainer.appendChild(newInput);
       }
 
-      function addBenodigheden() {
-        var inputContainer = document.getElementById("input-container3");
-        var newInput = document.createElement("input");
-        newInput.type = "text";
-        newInput.className = "form-control";
-        newInput.placeholder = "Vul hier de benodigdheden in..";
-        inputContainer.appendChild(newInput);
-      }
-
-
-
-
-      function ophalenReceptData(data) {
-        for (let i = 0; i < data.length; i++) {
-          document.getElementById("divjepython").innerHTML += data[i].recipeID;
-          document.getElementById("divjepython").innerHTML += data[i].prepTime + "<br>";
-        }
-      }
-
-
-      function def(data) {
-
-        document.getElementById("divjepython").innerHTML = data.recipe_title[0];
-
-        //console.log(data);
-
-      }
-
-      function createRecept() {
-        // Invoer velden uitlezen
-        let nameInvoer = document.getElementById('recipeTitle-input').value;
-        let prepTimeInvoer = document.getElementById('prepTime-input').value;
-        let prepTextInvoer = document.getElementById('prepText-input').value;
-        let introInvoer = document.getElementById('intro-input').value;
-        let fotoInvoer = document.getElementById('foto-input').value;
-        let bbqIdInvoer = document.getElementById('bbqId-input').value;
-        let cookAttireIdInvoer = document.getElementById('cookAttireId-input').value;
-        let ratingInvoer = document.getElementById('rating-input').value;
-        let userIdInvoer = document.getElementById('userId-input').value;
-        let dateCreateInvoer = document.getElementById('dateCreate-input').value;
-
-        // Maak een recept object in javascript
-        let newRecept = {
-          recipeID: nameInvoer,
-          prepTime: prepTimeInvoer,
-          prepText: prepTextInvoer,
-          intro: introInvoer,
-          foto: fotoInvoer,
-          bbqId: bbqIdInvoer,
-          cookAttireId: cookAttireIdInvoer,
-          userId: userIdInvoer,
-          dateCreate: dateCreateInvoer,
-          diet: dieet-invoer
-        }
-
-        console.log(JSON.stringify(newRecept));
-
-        fetch("https://localhost:7042/api/Recepten", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-
-          body: JSON.stringify(newRecept)
-        })
-          .then(response => {
-            alert('Is goedgegaan');
-            loadRecepts();
-          })
-          .catch(error => {
-            alert('Er is iets fouts gegaan');
-          });
-      }
-
-      function loadRecepts() {
-        fetch("https://localhost:7042/api/Recepten")
-          .then(res => res.json())
-          .then(data => {
-            console.log(data);
-
-            let tableHtml = '';
-
-            data.forEach(recept => {
-              tableHtml += `
-                        <tr>
-                            <td>${recept.recipeID}</td>
-                            <td>${recept.recipeTitle}</td>
-                            <td>${recept.userId}</td>
-                            <td>${recept.prepTime}</td>
-                            <td>${recept.prepText}</td>
-                            <td>${recept.cookAttireId}</td>
-                            <td>${recept.bbqId}</td>
-                            <td>${recept.rating}</td>
-                            <td>${recept.foto}</td>
-                            <td>${recept.intro}</td>
-                            <td>${recept.dateCreate}</td>
-                        </tr>
-                    `
-            });
-
-            document.getElementById('recepts-table').innerHTML = tableHtml;
-          })
-      }
-
-      loadRecepts();
 
     </script>
 </body>
