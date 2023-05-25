@@ -10,6 +10,7 @@
         recept.DateCreate= "e"
         recept.RecipeIngredients= []
         var data = JSON.stringify(recept)
+        console.log(data)
 
         fetch("https://localhost:7042/api/Recepten", {
             headers: {
