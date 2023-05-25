@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function hohoi() {
+      fetch('https://localhost:7042/api/Recepten').then(r => r.json()).then(d => toonRecepten(d))
+    }
+    function toonRecepten(recepten) {
+      console.log(recepten)
+      for (i of recepten) {
+        //fetch("https://localhost:7042/api/RecipeIngredient/recept/" + i.id).then(r=>r.json()).then(d => toonIngredient(d,i.id))
+        document.getElementById("dsiv").innerHTML += ":<br> + <span>" + i.title + "</span> + <br>"
+      }
+    }
+    function toonIngredient(ingredient, rijtje) {
+      for (i of ingredient) {
+        document.getElementById("abc" + rijtje).innerHTML += i.name
+      }
+    }
+    function lalala() {
+      fetch("https://localhost:7042/api/Recepten/" + 1).then(r => r.json()).then(d => kabouter(d))
+    }
+
+    function kabouter(d) {
+      console.log(d)
+      fetch("https://localhost:7042/api/RecipeIngredient/recept/" + d.id).then(r => r.json()).then(d => qwerty(d))
+    }
+    function qwerty(p) {
+      console.log(p)
+      for (i of p) {
+        document.getElementById("dsiv").innerHTML += i.name
+      }
+
+    }
+
+
+  </script>
+  <button onclick="hohoi()"></button>
+  <button></button>
+  <div id="dsiv">
+
+  </div>
+
+  <div id="nieuw"></div>
+  <hr>
+
+
+  <button onclick="lalala()"></button>
+  <div id="laol"></div>
+
+</body>
+
+</html>

@@ -133,7 +133,7 @@
 
 
           <label for="userId-input" class="form-label">Geupload door</label>
-          <input type="text" class="form-control" id="userId-input" placeholder="Vul hier de uploader in.">
+          <input type="text" class="form-control" id="userId-input" placeholder="Vul hier de UserID in.">
 
           <label for="dateCreate-input" class="form-label">Aangemaakt op</label>
           <input type="text" class="form-control" id="dateCreate-input" placeholder="Vul hier de aanmaakdatum in.">
@@ -141,6 +141,9 @@
 
           <label for="foto-input" class="form-label">Foto recept</label>
           <input type="text" class="form-control" id="foto-input" placeholder="Voer hier de url naar de foto in.">
+
+          <label for="dieet-input" class="form-label">Type dieet</label>
+          <input type="text" class="form-control" id="dieet-input" placeholder="Voer hier het type dieet in.">
 
         </div>
         <div class="col">
@@ -211,11 +214,6 @@
         }
       }
 
-      function toon_allereceptenpython() {
-        fetch("https://localhost:7042/api/Recepten")
-          .then(kukeleku => kukeleku.json())
-          .then(d => def(d))
-      }
 
       function def(data) {
 
@@ -230,7 +228,6 @@
         let nameInvoer = document.getElementById('recipeTitle-input').value;
         let prepTimeInvoer = document.getElementById('prepTime-input').value;
         let prepTextInvoer = document.getElementById('prepText-input').value;
-        //let mealTypeInvoer = document.getElementById('mealtype-input').value; 
         let introInvoer = document.getElementById('intro-input').value;
         let fotoInvoer = document.getElementById('foto-input').value;
         let bbqIdInvoer = document.getElementById('bbqId-input').value;
@@ -238,21 +235,19 @@
         let ratingInvoer = document.getElementById('rating-input').value;
         let userIdInvoer = document.getElementById('userId-input').value;
         let dateCreateInvoer = document.getElementById('dateCreate-input').value;
-        //let dateEditedInvoer = document.getElementById('dateedited-input').value;  
 
         // Maak een recept object in javascript
         let newRecept = {
           recipeID: nameInvoer,
           prepTime: prepTimeInvoer,
           prepText: prepTextInvoer,
-          //mealType: mealTypeInvoer,
           intro: introInvoer,
           foto: fotoInvoer,
           bbqId: bbqIdInvoer,
           cookAttireId: cookAttireIdInvoer,
           userId: userIdInvoer,
           dateCreate: dateCreateInvoer,
-          //dateEdited: dateEditedInvoer
+          diet: dieet-invoer
         }
 
         console.log(JSON.stringify(newRecept));
@@ -276,7 +271,7 @@
 
       function loadRecepts() {
         fetch("https://localhost:7042/api/Recepten")
-          .then(res => res.json()) // = anonymous function
+          .then(res => res.json())
           .then(data => {
             console.log(data);
 
