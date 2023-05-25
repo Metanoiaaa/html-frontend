@@ -1,0 +1,67 @@
+
+<script>
+    function haalop(){
+        var recept = {};
+        recept.title = document.getElementById("recept").value;
+        recept.Diet= "a"
+        recept.Foto= "b"
+        recept.Intro= "c"
+        recept.PrepText= "d"
+        recept.DateCreate= "e"
+        recept.RecipeIngredients= []
+        var data = JSON.stringify(recept)
+
+        fetch("https://localhost:7042/api/Recepten", {
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method: 'POST',
+            body: data
+        })
+        .then(res => res.text())
+        .then(d => verkrijgid(d))
+    }
+    function verkrijgid(recept){
+        console.log("y verkrijg id"+recept);
+        document.getElementById("opgeslagenreceptid").value = recept;
+       
+    }
+    function toonhuidigeingredienten(){
+        let rid = document.getElementById("opgeslagenreceptid").value;
+        fetch("https://localhost:7042/api/RecipeIngredient/recept/"+rid)
+        .then(res => res.json())
+        .then(d => toonIngredienten(d))
+    }
+    function toonIngredienten(ingredienten){
+        document.getElementById("mydata").innerHTML = "";
+        for(i of ingredienten){
+            document.getElementById("mydata").innerHTML += i.name+"<br>";
+        }
+        document.getElementById("mydata").innerHTML += "<br>!";
+    }
+    function voegIngredientToe(){
+        var receptid = document.getElementById("opgeslagenreceptid").value;
+        var ingredientnaam = document.getElementById("ingredientnaam").value;
+        var naardbjson = {};
+        naardbjson.receptid = receptid;
+        naardbjson.ingredientnaam = ingredientnaam;
+        naardbjson = JSON.stringify(naardbjson);
+        fetch("https://localhost:7042/api/Ingredienten/voegtoe", {
+            headers: {
+                'Content-type': 'application/json'
+            },
+            method: 'POST',
+            body: naardbjson
+        }).then(r=> alert("opgeslagen"))
+    }
+</script>
+naam nieuw recept:<input id="recept">
+<button onclick="haalop()">Sla recept op</button>
+
+<hr>
+opgeslagenreceptid:<input id="opgeslagenreceptid">
+<button onclick="toonhuidigeingredienten()">ToonIngredienten</button>
+<div id="mydata">
+</div>
+<hr>
+<input id="ingredientnaam"><button onclick="voegIngredientToe()">VoegIngredientToe</button>
