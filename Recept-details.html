@@ -238,6 +238,7 @@
       <script>
         // VALIDATION
         // Example starter JavaScript for disabling form submissions if there are invalid fields
+        console.log(sessionStorage.getItem("recipeId"))
         $(window).scroll(function () {
         var height = $(window).scrollTop();
 
@@ -265,32 +266,95 @@
         // EINDE VALIDATION
         
         // COLAPSE
-        function collapse() {
-          showUpdateRecipe
-        }
-        // EINDE COLLAPSE
-        // FILL RECIPE FORM Csharp
         async function showUpdateRecipec(){
-          var ReceptIDc = sessionStorage.getItem('recipeIdc')
-          console.log(ReceptIDc)
+          var ReceptIDc = sessionStorage.getItem('recipeId')
+          console.log(ReceptIDc);
+          //var receptID = parseInt(ReceptID);
+          
+          var adjustedReceptId = Number(ReceptIDc.replace("--2", ""));
+          console.log(adjustedReceptId);
+          //console.log(ReceptIDc)
           const reqc = new Request("https://localhost:7042/api/Recepten")
           const responsec = await fetch(reqc);
           const textDatac = await responsec.text();
           const jsonDatac = JSON.parse(textDatac);
-          console.log(jsonDatac[ReceptIDc[0]])
-          
+          var bruikbaar = jsonDatac[adjustedReceptId];
+          var soep = Object.keys(bruikbaar);
+          var value = Object.values(bruikbaar);
+          console.log(value)
+          for (let i=0;i<soep.length;i++){
+              console.log(i)
+            try{  
+              document.getElementById(i + "-input").value = value[i]
+              if(i == 3) {
+                value = value.replace("PT", "")             
+                value = value.replace("M", "")
+                document.getElementById(key + "-input").value = value;
+              }
+
+              if(i == 1) {
+                value = value.replaceAll("$", "'")             
+                //value = value.replace("M", "")
+                document.getElementById(key + "-input").value = value;
+              }
+
+              if(i == 4) {
+                //value = value.replace("$", "'")
+                value = value.replace(/["]/g, '')             
+                value = value.replaceAll('@', ',')
+                value = value.replaceAll("&#39;", "'")
+                console.log(value)
+                document.getElementById(key + "-input").value = value;
+              }
+
+              if(i == 9) {
+                value = value.replace(/["]/g, '')
+                value = value.replaceAll("$", "'")             
+                value = value.replaceAll("@", ",")
+                document.getElementById(key + "-input").value = value;
+              }
+              if(i == 6) {
+                document.getElementById(key + "-input").value = "Gas";
+              }
+
+              if (i == 8) {
+                value = value.replace(/["]/g, '')
+                console.log(value)
+                document.getElementById(key + "-input").src = value          
+              }
+
+              if (i == 11) {
+                var date = new Date(value)
+                //console.log(value)
+                document.getElementById(key + "-input").value = date;          
+              }
+            }
+            catch (error) {
+                  console.log(error);
+                }
+          }
+          const req3 = new Request("https://localhost:7042/api/RecipeIngredient/recept/" + adjustedReceptId)
+          //console.log(req2)
+          const response3 = await fetch(req3);
+          const textData3 = await response3.text();
+          const jsonData3 = JSON.parse(textData3);
+          console.log(jsonData3)
+          colgate.innerHTML = "<h2>Ingredienten</h2>";
+            for(var i=0;i<jsonData3.length; i++){
+                colgate.innerHTML += `<textarea type="text" class="form-control-plaintext" id="`+ i +`-ing" name="ing" placeholder="` + i + `"disabled readonly>`+jsonData3[i].name+`</textarea>`
+                console.log(i)
+              }
         }
-    
+          
         // FILL RECIPE FORM
         async function showUpdateRecipe() {
           // Haal het formulier op
-          var ReceptID = sessionStorage.getItem('recipeId');
+          var ReceptID = sessionStorage.getItem('recipeId')
           console.log(ReceptID);
-          var receptID = parseInt(ReceptID);
+          //var receptID = parseInt(ReceptID);
           
-          var adjustedReceptId = receptID;
-          console.log(typeof adjustedReceptId);
-
+          var adjustedReceptId = Number(ReceptID.replace("--1", ""));
+          console.log(adjustedReceptId);
           var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -361,18 +425,14 @@
           var xhttpingrec = new XMLHttpRequest();
           xhttpingrec.onreadystatechange = async function(){
             if (this.readyState == 4 && this.status == 200) {
-                            //console.log(xhttping.response())
-              //var karel = JSON.parse(xhttping.responseText);
-              //console.log(karel)
+
               var responseingrec = JSON.parse(xhttpingrec.responseText);
               for (var k=224; k<responseingrec.length; k++){
                 responseingrec[k][1] = responseingrec[k][1] + 22 
                 //console.log(responseingrec[k][1])
               }
               console.log(responseingrec)
-              //responseingrec['1'] .slice(224, responseingrec.length)= responseingrec['1'].slice(224, responseingrec.length) + 22
-              //console.log(responseingrec[0])
-              //if (responseingrec[1])
+
               colgate.innerHTML = "<h2>Ingredienten</h2>";
               for(var i=0;i<responseingrec.length; i++){
                 if (responseingrec[i][1] == adjustedReceptId){
@@ -392,10 +452,7 @@
                 if (responseingrec[j][1] == adjustedReceptId){
                   console.log(responseingrec[j][2])
 
-                  //console.log(jsonData2[i]["Name"])
-                  //console.log(responseingrec[i])
-                  //colgate.innerHTML += `<input type="text" class="form-control-plaintext" id="`+ i +`-ing" name="ing" placeholder="` + i + `"disabled readonly><br>`
-                  if (responseingrec[j][3] == null){
+                if (responseingrec[j][3] == null){
                     document.getElementById(j + "-ing").value = jsonData2[responseingrec[j][2]]["Name"];
                   }
                   else{
@@ -417,8 +474,6 @@
 
           }
         };
-
-          // myFunction();
         }
 
     
@@ -522,12 +577,19 @@
               console.error('Fout bij het verwijderen van het recept:', error);
             });
         }
-        window.onload = showUpdateRecipe
-        window.onload = showUpdateRecipec
 
-        function showFoto() {
-
+      function showFoto() {
+        var kolen = sessionStorage.getItem("recipeId");
+        if (kolen[kolen.length - 1]==1){
+          console.log(kolen)
+          showUpdateRecipe()
         }
+        else {
+          console.log(true)
+          showUpdateRecipec()
+        }
+      }
+      window.onload = showFoto
       </script>
 </body>
 </html>
