@@ -78,7 +78,7 @@
             top: 0;
             padding-top: 40px;
             background-color: 1, 0, 0, 0.7;
-            margin-top: 500px;
+            margin-top: 1300px;
             overflow: auto;
             z-index: 0;
         }
@@ -185,14 +185,13 @@
 
     </div>
 
-
-    <div id="headers" class="container mt-5">
-
-        <h1>BBQ Recepten</h1>
-        <h2>Heerlijke Recepten Voor op de BBQ</h2>
-
+    <div id="headers1" class="recipe-grid" style="text-align: right;">
+        <h2></h2><h1>BBQ Recepten</h1>
     </div>
-    <div id="recepten" class="container mt-5">
+
+    <div id="headers2" class="recipe-grid" style="text-align: right;">
+
+        <h2></h2><h2 style="text-align:center"></h2style>Eigen Recepten</h2>
 
     </div>
 
@@ -252,6 +251,15 @@
             </div>
         </div>
 
+        <section id="cardc" class="recipe-grid" value="Eigen Recepten">
+
+        </section>
+
+        <div id="headers" class="recipe-grid">
+            <h1></h1>
+            <h2 style="text-align:center">Suggesties</h2>
+    
+        </div>
 
             <section id="card" class="recipe-grid">
 
@@ -305,7 +313,62 @@
 
         //document.getElementById("search").value = "location.href='recepten.html'"
         document.getElementById("refresh").onclick = "location.href='index.html'"
+        //csharp
+        const reqc = new Request("https://localhost:7042/api/Recepten")
+        const responsec = await fetch(reqc);
+        const textDatac = await responsec.text();
+        const jsonDatac = JSON.parse(textDatac);
+        console.log(jsonDatac)
+        var cardc = document.getElementById("cardc");
+        cardc.innerHTML = ""; 
+        for (var i = 0; i < jsonDatac.length; i++) {
+            console.log(jsonDatac[i]["prepTime"])
+            //jsonDatac[i]["prepTime"] = String(jsonDatac[i]["prepTime"]);
+            jsonDatac[i]["prepTime"] = jsonDatac[i]["prepTime"].toString().replace("PT", "")
+            jsonDatac[i]["prepTime"] = jsonDatac[i]["prepTime"].replace("M", "")
+            jsonDatac[i]["prepTime"] = parseInt(jsonDatac[i]["prepTime"])
+            //console.log(typeof jsonData[i]["3"])
+            //console.log(filter2)
+                cardc.innerHTML += `<span id="cardc` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageIdc(this.id)">`+i+`
+                    <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
+                    <div class="thumbnail-row">
+                    <img id="imagec`+ i + `" class="thumbnail" width="200px" height="200px" style="border-radius:50 px">
+                    <div id="titlec`+ i + `" class="video-time" style="font-size:16px; display:block" ></div>
+                    </div>
+                    <div class="video-info-grid">
+                    <div class="video-info">    
+                        <p id = "preptimec`+ i + `" class="video-title" style="font-size:16px">
+                        </p>
+                        <p id="ratingc`+ i + `" class="video-author" style="font-size:16px">
+                        </p>
+                        <p class="video-stats">
+                        </p>
+                    </div>
+                    </div>
+                </div>
+                </span>`
 
+        }
+
+        for (var i = 0; i < jsonDatac.length; i++) {
+                var titlec = jsonDatac[i]["title"];
+                var imagec = jsonDatac[i]["foto"];
+                var preptimec = jsonDatac[i]["prepTime"];
+                var ratingc = jsonDatac[i]["rating"];
+                imagec = imagec.replace(/["]/g, '')
+                //console.log(title.replace("$", "'"))
+                //console.log(image);
+                //console.log(jsonData.length)
+                //console.log(jsonData[i]["4"])
+                document.getElementById("titlec" + i).innerHTML = titlec.replace("$", "'");
+                document.getElementById("imagec" + i).src = imagec;
+                document.getElementById("preptimec" + i).innerHTML = "Preparation time: " + preptimec + " Minutes"
+                document.getElementById("ratingc" + i).innerHTML = "Rating: " + ratingc;
+        }
+
+
+
+        //python
         const req = new Request("https://yc2304pythonbackend.azurewebsites.net/recipes")
         const response = await fetch(req);
         const textData = await response.text();
@@ -350,13 +413,13 @@
             jsonData[i]["3"] = jsonData[i]["3"].replace("PT", "")
             jsonData[i]["3"] = jsonData[i]["3"].replace("M", "")
             jsonData[i]["3"] = parseInt(jsonData[i]["3"])
-            console.log(typeof jsonData[i]["3"])
-            console.log(filter2)
+            //console.log(typeof jsonData[i]["3"])
+            //console.log(filter2)
             if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter && jsonData[i]["3"] <= filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet) {
                 card.innerHTML += `<span id="card` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id)">`+i+`
                     <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
-                    <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
+                    <img id="image`+ i + `" class="thumbnail" width="200px" height="200px" style="border-radius:50 px">
                     <div id="title`+ i + `" class="video-time" style="font-size:16px; display:block" ></div>
                     </div>
                     <div class="video-info-grid">
@@ -382,7 +445,7 @@
                 var preptime = jsonData[i]["3"];
                 var rating = jsonData[i]["7"];
                 image = image.replace(/["]/g, '')
-                console.log(title.replace("$", "'"))
+                //console.log(title.replace("$", "'"))
                 //console.log(image);
                 //console.log(jsonData.length)
                 //console.log(jsonData[i]["4"])
@@ -458,7 +521,13 @@
         console.log(document.getElementById(id).innerHTML)
         sessionStorage.setItem("recipeId", document.getElementById(id).innerHTML)
         window.location.href = 'Recept-details.html'
-    }       
+    }    
+    
+    function localStorageIdc(id) {
+        console.log(document.getElementById(id).innerHTML)
+        sessionStorage.setItem("recipeIdc", document.getElementById(id).innerHTML)
+        window.location.href = 'Recept-details.html'
+    }   
     
     ratingRange.onclick = () => {
         var myNode = document.getElementById("gridclass");
