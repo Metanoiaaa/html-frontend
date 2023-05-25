@@ -14,19 +14,44 @@
 <body>
 <style>
     h2{
-        font-size:16px;
+        font-size:18px;
         font-weight:bold;
         margin-bottom: 0px;
+        text-align: left;
     }
 
     input[type=text-h1] {
         text-align: left;
         word-wrap: break-word;
-        word-break: break-all;
+        word-break: break-word;
         height: 80px;
         font-weight: bold;
         font-size:larger;
+        margin-left: 0px;
+        border-color: white;
+    }
+    textarea[type=text] {
+        width: 250px;
+        text-align: left;
+        word-wrap: break-word;
+        height: 65px;
+        font-weight: initial;
+        font-size:smaller;
         margin-left: 18px;
+        border: 0px;
+        border-color: white;
+    }
+    input[type=number] {
+        width: 80px;
+        text-align: center;
+        word-wrap: break-word;
+        word-break: break-all;
+        height: 50px;
+        font-weight: initial;
+        font-size:smaller;
+        margin-left: 18px;
+        border: 0px;
+        border-color: white;
     }
 
     div{
@@ -37,6 +62,11 @@
     img {
     border-radius: 50%;
     }
+
+    .dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+}
 
     /* input{
       width: auto;
@@ -49,7 +79,7 @@
 <!-- Begin header -->
 <body>
     <div class="container-fluid onze-header">
-        <nav class="navbar navbar-expand">
+        <nav class="navbar navbar-expand" style="z-index:1">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
                     <img src="img/logo.png" class="img-fluid logo" alt="Recepten Database"/>
@@ -83,7 +113,7 @@
                             <i class="fa-solid fa-circle-user"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="Gebruikers.html">Mijn Account</a></li>
+                            <li><a class="dropdown-item" href="Gebruikers.html" style="position:relative;">Mijn Account</a></li>
                             <li><a class="dropdown-item" href="GebruikersAanmaken.html">Account aanmaken</a></li>
                         </ul>
                     </li>
@@ -100,12 +130,7 @@
         </div>
     </div>
 
-    <div class="table">
-        <label for="id">ReceptID:</label>
-        <input type="text" id="id" name="id" placeholder="Vul ReceptID in."><br><br>
-        <button type = "submit" onclick="showUpdateRecipe()">Laad recept</button>
-        <br><br>
-      </div>
+
   
       <!-- BEGIN NESTING -->
       <div class="container text-left">
@@ -121,7 +146,7 @@
         <div class="row">
           <div class="col-sm-6">
             <!-- <img src="./img/header.jpg" style="object-fit:cover; width:600px; height:600px"> -->
-            <input type="image" id="8-input" style="object-fit:cover; width:600px; height:600px" src="8-input">
+            <input type="image" id="8-input" style="object-fit:cover; width:600px; height:600px">
             <!-- Level 1: .col-sm-6 -->
               <div class="row">
                 <div class="col-sm-4">
@@ -137,7 +162,7 @@
                   </div>
                   Gepubliceerd op:
                   <div class="mb-3">
-                    <input type="text" class="form-control-plaintext" id="11-input" name="dateCreate" placeholder="dateCreate wordt hier geladen."disabled readonly><br>
+                    <input type="datetime"type = "text" class="form-control-plaintext" id="11-input" name="dateCreate" placeholder="dateCreate wordt hier geladen."disabled readonly><br>
                   </div>
                   <!-- <br>
                   Laatst geupdate op: dag-maand-jaar -->
@@ -150,92 +175,57 @@
                 <!-- KOLOM 2 KOMT HIER -->
                 <!-- Level 2: .col-8 .col-sm-6 -->
                 <div class="row row-cols-1">
-                    <div class="col">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
+                  <div class="input-group col-sm-4">
+                      <span class="input-group-text"><i class="fa form-control-plaintext" aria-hidden="true"></i>
+                        <input type="number" class="fa form-control-plaintext" id="7-input" aria-label="Amount (to the nearest dollar)" disabled readonly>
+                        <i class="fa fa-star"></i></span>
                     </div>
-                    
-
-                    <!-- <div class="input-group mb-2">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
-                      </div>
-                      <input type="text" class="form-control-plaintext" id="prepTime-input" name="prepTime-input" placeholder="prepTime"disabled readonly>
-                      <div class="input-group-append">
-                        <span class="input-group-text"> minuten</span>
-                      </div>
-                    </div> -->
-
-                    <!-- <div class="col-auto">
-                      <i class="fa fa-hourglass-half" aria-hidden="true"></i>
-                        <div class="col-sm-3">
-                          <input type="text" class="form-control-plaintext" id="prepTime-input" name="prepTime-input" placeholder="prepTime komt hier."disabled readonly> minuten <br>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
-                      </div>
-                      <input type="text" class="form-control-plaintext" id="prepTime-input" aria-label="Amount (to the nearest dollar)">
-                      <div class="input-group-append">
-                        <span class="input-group-text">.00</span>
-                      </div>
-                    </div> -->
-                    
+                                        
                     <div class="input-group col-sm-4">
                       <div class="input-group-prepend ">
-                        <span class="input-group-text"><i class="fa fa-hourglass-half" aria-hidden="true"></i></span>
+                        <span class="input-group-text"><i class="fa form-control-plaintext" aria-hidden="true"></i>
+                          <input type="number" class="fa form-control-plaintext" id="3-input" aria-label="Amount (to the nearest dollar)" disabled readonly>
+                        min</span>
                       </div>
                       
-                      <div class="col-3">
-                        <input type="text" class="form-control" id="3-input" aria-label="Amount (to the nearest dollar)" disabled readonly>
-                      </div>
+                    </div>
 
-                      <div class="input-group-append">
-                        <span class="input-group-text">min</span>
+                    <div class="input-group col-sm-4">
+                      
+                      <div class="col-sm-6"><h2>Barbecue</h2>
+                        <textarea type="text" class="form-control-plaintext" id="6-input" name="bbqId-input" placeholder="bbqId komt hier."disabled readonly></textarea>
                       </div>
                     </div>
 
-                    <div class="col-auto">
-                      <div class="col-sm-4"><h2>Barbecue</h2>
-                        <input type="text" class="form-control-plaintext" id="6-input" name="bbqId-input" placeholder="bbqId komt hier."disabled readonly><br>
-                      </div>
-                    </div>
-
-                    <div class="col-auto">
+                    <div class="input-group col-sm-4">
                       <div class="col-sm-6"><h2>Dieet</h2>
-                        <input type="text" class="form-control-plaintext" id="10-input" name="diet" placeholder="diet komt hier."disabled readonly><br>
+                        <textarea type="text" class="form-control-plaintext" id="10-input" name="diet" placeholder="diet komt hier."disabled readonly></textarea>
                       </div>
                     </div>
-                    <div class="col"><h2>Ingredienten</h2>
-                      <input type="text" class="form-control-plaintext" id="10-input" name="diet" placeholder="diet komt hier."disabled readonly><br>
-          
-                     
-                      <br>
+                    <div id = "colgate" class="input-group col-sm-4">
+                      
                     </div>
-                    <div class="col"><h2>Kookgereedschap</h2>
-                        <input type="text" class="form-control-plaintext" id="5-input" name="cookAttireId-input" placeholder="cookAttireId komt hier." disabled readonly><br>
+                    <div class="input-group col-sm-4">
+                      <div class="col-sm-6"><h2>Kookgereedschap</h2>
+                        <textarea type="text" class="form-control-plaintext" id="5-input" name="cookAttireId-input" placeholder="cookAttireId komt hier." disabled readonly></textarea>
+                      </div>
                     </div>
                   </div>                
               </div>
-              <div class="col-4 col-sm-6">
+              <div class="col-3 col-sm-5">
                 <!-- KOLOM 3 KOMT HIER -->
                 <!-- Level 2: .col-4 .col-sm-6 -->
-                <div class="row row-cols-1">
-                    <div class="col"><h2>Introductie</h2>
-                      <div class="mb-3">
-                        <textarea readonly class="form-control-plaintext" placeholder="intro komt hier" id="9-input" style="height: auto" disabled readonly></textarea>
+                <div class="row row-cols-6">
+                    <div class="input-group col-sm-6">
+                      <div class="row"><h2>Introductie</h2>
+                        <textarea readonly type = "text" class="form-control-plaintext" placeholder="intro komt hier" id="9-input" style="height: 200px" font="12px" disabled readonly></textarea>
                         <!-- <input type="text" class="form-control-plaintext" style="object-fit:contain; width:600px; height:auto" id="intro-input" name="intro" placeholder="Introductie komt hier."disabled readonly><br> -->
                       </div>
                       <!-- Bim, bam, beieren, de koster lust geen eieren. Wat lust hij dan? Spek in de pan. O, zoo'n lekkere koster dan! -->
                     </div>
-                    <div class="col"><h2>Bereiding</h2>
-                      <div class="form-floating mb-3">
-                        <textarea readonly class="form-control-plaintext" placeholder="prepText komt hier" id="4-input" style="height: 750px" disabled readonly></textarea>
+                    <div class="input-group col-sm-6">
+                      <div class="row"><h2>Bereiding</h2>
+                        <textarea readonly type = "text" class="form-control-plaintext" placeholder="prepText komt hier" id="4-input" style="height: 600px" font="12px" disabled readonly></textarea>
                         <!-- <input type="textarea" rows="25" wrap="hard" class="form-control" id="prepText-input" name="prepText" placeholder="prepText komt hier."><br> -->
                       </div>
                   </div> 
@@ -245,77 +235,18 @@
         </div>
       </div>
 
-<!-- <div class="container text-left">
-        <div class="row">
-          <div class="col-sm-2">
-            <br><i class="fa-solid fa-circle-user fa-10x"></i>
-          </div>
-          <div class="col-sm">
-            <br>
-            Auteur:
-            <div class="mb-3">
-              <input type="text" class="form-control-plaintext" id="userId-input" name="userId" placeholder="userId wordt hier geladen."disabled readonly><br>
-            </div>
-            <br>
-            Gepubliceerd op:
-            <div class="mb-3">
-              <input type="text" class="form-control-plaintext" id="dateCreate-input" name="dateCreate" placeholder="dateCreate wordt hier geladen."disabled readonly><br>
-            </div>
-            <br>
-            Laatst geupdate op: dag-maand-jaar
-          </div>
-        </div>
-      </div> -->
-      <!-- EINDE NESTING 2.0 -->
-    
-      <!-- <div class="table" id="UpdateRecipeTable">
-        <label for="title-input" class="form-label">Naam recept</label>
-        <input type="text" class="form-control" id="title-input" name="title" placeholder="Vul naam in."><br>
-    
-        <label for="prepTime-input" class="form-label">Kooktijd</label>
-        <input type="number" class="form-control" id="prepTime-input" placeholder="Vul hier de kooktijd in."><br>
-    
-        <label for="rating-input" class="form-label">Rating</label>
-        <input type="number" class="form-control" id="rating-input" placeholder="Vul hier de rating in."><br>
-    
-        <label for="bbqId-input" class="form-label">Type BBQ</label>
-        <input type="number" class="form-control" id="bbqId-input" placeholder="Vul hier het type barbecue in."><br>
-    
-        <label for="intro-input" class="form-label">Introductie</label>
-        <input type="text" class="form-control" id="intro-input" placeholder="Vul hier de introductie in."><br>
-    
-        <label for="prepText-input" class="form-label">Instructies</label>
-        <input type="text" class="form-control" id="prepText-input" placeholder="Vul hier de instructies in."><br>
-    
-        <label for="cookAttireId-input" class="form-label">Benodigdheden</label>
-        <input type="number" class="form-control" id="cookAttireId-input" placeholder="Vul hier de benodigdheden in."><br>
-    
-        <label for="userId-input" class="form-label">Geupload door</label>
-        <input type="text" class="form-control" id="userId-input" placeholder="Vul hier de uploader in."><br>
-    
-        <label for="dateCreate-input" class="form-label">Aangemaakt op</label>
-        <input type="text" class="form-control" id="dateCreate-input" placeholder="Vul hier de aanmaakdatum in."><br>
-    
-        <label for="foto-input" class="form-label">Foto recept</label>
-        <input type="text" class="form-control" id="foto-input" placeholder="Voer hier de url naar de foto in."><br>
-    
-        <label for="diet-input" class="form-label">Dieetwensen recept</label>
-        <input type="text" class="form-control" id="diet-input" placeholder="Voer hier de dieetwensen in."><br>
-    
-        <button class="btn btn-info" onclick="updateRecipe()">Update recept</button>
-        <button class="btn btn-danger" onclick="verwijderRecept()">Delete recept</button>
-      </div> -->
-    
-      <!-- DELETE RECEPT KNOP -->
-      <!-- <div class="delete recipe">
-        <label for="recipeID">Recept nummer (recipeId):</label>
-        <input type="text" id="recipeID" name="recipeID"><br><br>
-        <button onclick="verwijderRecept()">Delete recept</button>
-      </div> -->
-    
       <script>
         // VALIDATION
         // Example starter JavaScript for disabling form submissions if there are invalid fields
+        $(window).scroll(function () {
+        var height = $(window).scrollTop();
+
+        if (height > 450) {
+            $("nav.navbar").addClass("nav-achtergrond");
+        } else {
+            $("nav.navbar").removeClass("nav-achtergrond");
+        }
+    });
     (() => {
       'use strict'
       // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -340,58 +271,144 @@
         // EINDE COLLAPSE
     
         // FILL RECIPE FORM
-        function showUpdateRecipe() {
-  // Haal het formulier op
-  var ReceptID = sessionStorage.getItem('recipeId');
-  console.log(ReceptID);
-  var receptID = parseInt(ReceptID);
-  
-  var adjustedReceptId = receptID - 1;
-  console.log(typeof adjustedReceptId);
-
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var response = JSON.parse(xhttp.responseText);
-      console.log(response[adjustedReceptId]);
-
-      var geladenRecept = response[adjustedReceptId];
-      Object.entries(geladenRecept).forEach(element => {
-        var [key, value] = element;
-        console.log(key, value);
-        key=parseInt(key) 
-        try {
-          document.getElementById(key + "-input").value = value;
-
-          if(
-            key == 3
-          ) {
-            value = value.replace("PT", "")             
-            value = value.replace("M", "")
-            document.getElementById(key + "-input").value = value;
-          }
-
-          if (
-            key == 8  
-          ) {
-            value = value.replace(/["]/g, '')
-            console.log(value)
-            document.getElementById(key + "-input").src = value          
-          }
-
-            
+        async function showUpdateRecipe() {
+          // Haal het formulier op
+          var ReceptID = sessionStorage.getItem('recipeId');
+          console.log(ReceptID);
+          var receptID = parseInt(ReceptID);
           
-          console.log(element);
-        } catch (error) {
-          console.log(error);
+          var adjustedReceptId = receptID;
+          console.log(typeof adjustedReceptId);
+
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var response = JSON.parse(xhttp.responseText);
+              console.log(response[adjustedReceptId]);
+
+              var geladenRecept = response[adjustedReceptId];
+              Object.entries(geladenRecept).forEach(element => {
+                var [key, value] = element;
+                console.log(key, value);
+                key=parseInt(key) 
+                try {
+                  document.getElementById(key + "-input").value = value;
+
+                  if(key == 3) {
+                    value = value.replace("PT", "")             
+                    value = value.replace("M", "")
+                    document.getElementById(key + "-input").value = value;
+                  }
+
+                  if(key == 1) {
+                    value = value.replaceAll("$", "'")             
+                    //value = value.replace("M", "")
+                    document.getElementById(key + "-input").value = value;
+                  }
+
+                  if(key == 4) {
+                    //value = value.replace("$", "'")
+                    value = value.replace(/["]/g, '')             
+                    value = value.replaceAll('@', ',')
+                    value = value.replaceAll("&#39;", "'")
+                    console.log(value)
+                    document.getElementById(key + "-input").value = value;
+                  }
+
+                  if(key == 9) {
+                    value = value.replace(/["]/g, '')
+                    value = value.replaceAll("$", "'")             
+                    value = value.replaceAll("@", ",")
+                    document.getElementById(key + "-input").value = value;
+                  }
+                  if(key == 6) {
+                    document.getElementById(key + "-input").value = "Gas";
+                  }
+
+                  if (key == 8) {
+                    value = value.replace(/["]/g, '')
+                    console.log(value)
+                    document.getElementById(key + "-input").src = value          
+                  }
+
+                  if (key == 11) {
+                    var date = new Date(value)
+                    //console.log(value)
+                    document.getElementById(key + "-input").value = date;          
+                  }
+                 
+                  //console.log(element);
+                } catch (error) {
+                  console.log(error);
+                }
+              });
+            }
+          }
+          xhttp.open("GET", "https://yc2304pythonbackend.azurewebsites.net/recipes", true);
+          xhttp.send();
+
+          var xhttpingrec = new XMLHttpRequest();
+          xhttpingrec.onreadystatechange = async function(){
+            if (this.readyState == 4 && this.status == 200) {
+                            //console.log(xhttping.response())
+              //var karel = JSON.parse(xhttping.responseText);
+              //console.log(karel)
+              var responseingrec = JSON.parse(xhttpingrec.responseText);
+              for (var k=224; k<responseingrec.length; k++){
+                responseingrec[k][1] = responseingrec[k][1] + 22 
+                //console.log(responseingrec[k][1])
+              }
+              console.log(responseingrec)
+              //responseingrec['1'] .slice(224, responseingrec.length)= responseingrec['1'].slice(224, responseingrec.length) + 22
+              //console.log(responseingrec[0])
+              //if (responseingrec[1])
+              colgate.innerHTML = "<h2>Ingredienten</h2>";
+              for(var i=0;i<responseingrec.length; i++){
+                if (responseingrec[i][1] == adjustedReceptId){
+                  //console.log(responseingrec[i])
+                  colgate.innerHTML += `<textarea type="text" class="form-control-plaintext" id="`+ i +`-ing" name="ing" placeholder="` + i + `"disabled readonly>`
+                  console.log(i)
+                }
+              }
+              var karel = [];
+              const req2 = new Request("https://yc2304pythonbackend.azurewebsites.net/ingredients")
+              const response2 = await fetch(req2);
+              const textData2 = await response2.text();
+              const jsonData2 = JSON.parse(textData2);
+              console.log(jsonData2)
+              for(var j=0;j<responseingrec.length; j++){
+                //console.log(j)
+                if (responseingrec[j][1] == adjustedReceptId){
+                  console.log(responseingrec[j][2])
+
+                  //console.log(jsonData2[i]["Name"])
+                  //console.log(responseingrec[i])
+                  //colgate.innerHTML += `<input type="text" class="form-control-plaintext" id="`+ i +`-ing" name="ing" placeholder="` + i + `"disabled readonly><br>`
+                  if (responseingrec[j][3] == null){
+                    document.getElementById(j + "-ing").value = jsonData2[responseingrec[j][2]]["Name"];
+                  }
+                  else{
+                  document.getElementById(j + "-ing").value = responseingrec[j][3] + responseingrec[j][4] + jsonData2[responseingrec[j][2]]["Name"];
+                  }
+                }
+              }
+            }
+          }
+        xhttpingrec.open("GET", "https://yc2304pythonbackend.azurewebsites.net/ingrec", true);
+        xhttpingrec.send();
+        var xhttping = new XMLHttpRequest();
+        xhttping.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            var responseing = JSON.parse(xhttping.responseText);
+            console.log(responseing[adjustedReceptId]);
+
+            var geladenRecepting = responseing[adjustedReceptId];
+
+          }
+        };
+
+          // myFunction();
         }
-      });
-    }
-  };
-  xhttp.open("GET", "https://yc2304pythonbackend.azurewebsites.net/recipes", true);
-  xhttp.send();
-  // myFunction();
-}
 
     
         function updateRecipe() {
