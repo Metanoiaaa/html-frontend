@@ -269,6 +269,16 @@
           showUpdateRecipe
         }
         // EINDE COLLAPSE
+        // FILL RECIPE FORM Csharp
+        async function showUpdateRecipec(){
+          var ReceptIDc = sessionStorage.getItem('recipeIdc')
+          console.log(ReceptIDc)
+          const reqc = new Request("https://localhost:7042/api/Recepten")
+          const responsec = await fetch(reqc);
+          const textDatac = await responsec.text();
+          const jsonDatac = JSON.parse(textDatac);
+          console.log(jsonDatac[ReceptIDc[0]])
+        }
     
         // FILL RECIPE FORM
         async function showUpdateRecipe() {
@@ -512,6 +522,7 @@
             });
         }
         window.onload = showUpdateRecipe
+        window.onload = showUpdateRecipec
 
         function showFoto() {
 
