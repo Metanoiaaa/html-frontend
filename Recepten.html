@@ -71,10 +71,13 @@
     
   <h1 style="text-align: center;">Mijn receptenoverzicht</h1>
 
-  <button onclick="recepten_zien()">Laat recepten zien</button>
+  <div class="table">
+    <label for="id">ReceptID:</label>
+    <input type="text" id="id" name="id" placeholder="Vul ReceptID in."><br><br>
+    <button type = "submit" onclick="deleteRecipe()" href="Recepten.html">Verwijderen</button>
+    <br><br>
+  </div>
 
-  <button onclick="recepten_verwijderen()">Verwijderen</button>
-  <button onclick="loadRecepts()">Bewerken</button>
 
  
     <table class="table">
@@ -101,12 +104,7 @@
   <table class="table table-striped" id="recepts-table">
   </table>
 
-  <div class="table">
-    <label for="id">ReceptID:</label>
-    <input type="text" id="id" name="id" placeholder="Vul ReceptID in."><br><br>
-    <button type = "submit" onclick="recepten_zien()">Laad recept</button>
-    <br><br>
-  </div>
+  
 
 
   <br>
@@ -130,8 +128,8 @@
       const textDatarec = await responserec.text();
       const jsonDatarec = JSON.parse(textDatarec);
       console.log(jsonDatarec)
-      let recept = document.getElementById("tablenice")
-      recept.innerHtml =''
+      var recept = document.getElementById("tablenice")
+      recept.innerHtml =""
       
       for(let i=0; i < jsonDatarec.length; i++){
           console.log(jsonDatarec[i].title)
@@ -152,12 +150,30 @@
           ;};
     }
     window.onload = recepten_zien
-    function toon_allerecepten() {
-      fetch("https://yc2304csharp.azurewebsites.net")
-        .then(pullrecepts => pullrecepts.json())
-        .then(r => ophalenReceptData(r)); // Verander de naam van de functie die wordt aangeroepen naar ophalenReceptData
+    function deleteRecipe() {         // Bouw de SQL-query         
+      var User_ID = document.getElementById("id").value;         
+      var query = "DELETE FROM table_name WHERE id = " + User_ID;          
+      // Verwijder de gebruiker met behulp van Fetch API         
+      fetch('https://localhost:7042/api/Recepten/' + User_ID, {           
+        method: "DELETE",           
+        headers: {             
+          "Content-Type": "application/json",           
+        },           
+        body: JSON.stringify({ query: query })         
+      })           
+      .then(response => {             
+        if (response.ok) {               
+          alert("Gebruiker verwijderd");
+          recepten_zien()             
+        } else {               
+          alert("Er is een fout opgetreden bij het verwijderen van de gebruiker");             
+        }           
+      })           
+      .catch(error => {             
+        console.error('Fout bij het verwijderen van de gebruiker:', error);          
+      });
+      
     }
-
     function ophalenReceptData(data) {
       for (let i = 0; i < data.length; i++) {
         document.getElementById("divjepython").innerHTML += data[i].recipeID;

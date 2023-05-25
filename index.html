@@ -329,7 +329,8 @@
             jsonDatac[i]["prepTime"] = parseInt(jsonDatac[i]["prepTime"])
             //console.log(typeof jsonData[i]["3"])
             //console.log(filter2)
-                cardc.innerHTML += `<span id="cardc` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageIdc(this.id)">`+i+`
+            console.log(i)
+                cardc.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id, 2)">`+i+`
                     <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="imagec`+ i + `" class="thumbnail" width="200px" height="200px" style="border-radius:50 px">
@@ -416,7 +417,7 @@
             //console.log(typeof jsonData[i]["3"])
             //console.log(filter2)
             if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter && jsonData[i]["3"] <= filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet) {
-                card.innerHTML += `<span id="card` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id)">`+i+`
+                card.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id, 1)">`+i+`
                     <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px" style="border-radius:50 px">
@@ -484,10 +485,10 @@
 
 
             if (title.toLowerCase().includes(zoekterm.toLowerCase())) {
-                card.innerHTML += `<span id="card` + i + `" class="input-group-text"  style="background-color: darkgrey; display: block; width:400px border-radius:50px" onclick="localStorageId(this.id)">`+i+`
+                card.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display: block; width:400px border-radius:50px" onclick="localStorageId(this.id, 1)">`+i+`
                     <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
-                    <img id="image`+ i + `" class="thumbnail" width="200px" height="200px">
+                    <img id="image`+ i + `" class="thumbnail" width="200px" height="200px" style="border-radius:50 px">
                     <div id="title`+ i + `" class="video-time" style="font-size:16px; display:block"></div>
                     </div>
                     <div class="video-info-grid">
@@ -517,18 +518,13 @@
             }
         }
     }
-    function localStorageId(id) {
+    function localStorageId(id, backendnum) {
         console.log(document.getElementById(id).innerHTML)
-        sessionStorage.setItem("recipeId", document.getElementById(id).innerHTML)
+        var pizza = document.getElementById(id).id
+        sessionStorage.setItem("recipeId", pizza.replace("card", "") +"--"+ backendnum)
         window.location.href = 'Recept-details.html'
     }    
-    
-    function localStorageIdc(id) {
-        console.log(document.getElementById(id).innerHTML)
-        sessionStorage.setItem("recipeIdc", document.getElementById(id).innerHTML)
-        window.location.href = 'Recept-details.html'
-    }   
-    
+        
     ratingRange.onclick = () => {
         var myNode = document.getElementById("gridclass");
         myNode.innerHTML = '';
