@@ -1,241 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>Receptenoverzicht</title>
+    <title>Mijn recepten</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <style>
+
+  </style>
+  <div class="container-fluid onze-header">
+    <nav class="navbar navbar-expand">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <!-- <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li> -->
-              <li class="nav-item">
-                <a class="nav-link" href="./Recepten.html">Recepten</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="./ReceptToevoegen.html">Recept toevoegen</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./Recept-aanpassen.html">Recept aanpassen</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./Gebruikers.html">Gebruikers</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./GebruikersAanmaken.html">Gebruiker aanmaken</a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" class="img-fluid logo" alt="Recepten Database"/>
+            </a>
         </div>
-      </nav>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Recepten.html">Recepten</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Recepten Bewerken
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="ReceptToevoegen.html">Toevoegen</a></li>
+                        <li><a class="dropdown-item" href="Recept-aanpassen.html">Aanpassen</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-circle-user"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="Gebruikers.html">Mijn Account</a></li>
+                        <li><a class="dropdown-item" href="GebruikersAanmaken.html">Account aanmaken</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+  <div class="header">
+        <div class="search">
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" class="form-control" placeholder="Zoek recept..">
+            </div>
+        </div>
+    </div>
+  </div>
     
-    <h1>Receptenoverzicht</h1>
+  <h1 style="text-align: center;">Mijn receptenoverzicht</h1>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>recipeTitle</th>
-                <th>userId</th>
-                <th>prepTime</th>
-                <th>prepText</th>
-                <th>cookAttireId</th>
-                <th>bbqId</th>
-                <!-- <th>mealType</th> -->
-                <th>rating</th>
-                <th>foto</th>
-                <th>intro</th>
-                <th>dateCreate</th>
-                <!-- <th>dateEdited</th> -->
-            </tr>
-        </thead>
-        <tbody id="recepts-table">
-        </tbody>  
-    </table>
+  <table class="table table-striped" id="recepts-table"></table>
 
-    <div id="UpdateRecipeTable">
-        <!-- <label for="recipeTitle-input" class="form-label">Naam recept</label>
-        <input type="text" class="form-control" id="recipeTitle-input" placeholder="Vul hier een receptnaam in."><br>
-  
-        <label for="prepTime-input" class="form-label">Kooktijd</label>
-        <input type="number" class="form-control" id="prepTime-input" placeholder="Vul hier de kooktijd in."><br>
-  
-        <label for="rating-input" class="form-label">Rating</label>
-        <input type="number" class="form-control" id="rating-input" placeholder="Vul hier de rating in."><br>
-  
-        <label for="bbqId-input" class="form-label">Type BBQ</label>
-        <input type="number" class="form-control" id="bbqId-input" placeholder="Vul hier het type barbecue in."><br>
-  
-        <label for="intro-input" class="form-label">Introductie</label>
-        <input type="text" class="form-control" id="intro-input" placeholder="Vul hier de introductie in."><br>
-  
-        <label for="prepText-input" class="form-label">Instructies</label>
-        <input type="text" class="form-control" id="prepText-input" placeholder="Vul hier de instructies in."><br>
-  
-        <label for="cookAttireId-input" class="form-label">Benodigdheden</label>
-        <input type="number" class="form-control" id="cookAttireId-input" placeholder="Vul hier de benodigdheden in."><br>
-  
-        <label for="userId-input" class="form-label">Geupload door</label>
-        <input type="text" class="form-control" id="userId-input" placeholder="Vul hier de uploader in."><br>
-  
-        <label for="dateCreate-input" class="form-label">Aangemaakt op</label>
-        <input type="text" class="form-control" id="dateCreate-input" placeholder="Vul hier de aanmaakdatum in."><br>
-  
-        <label for="foto-input" class="form-label">Foto recept</label>
-        <input type="text" class="form-control" id="foto-input" placeholder="Voer hier de url naar de foto in."><br>
+  <button onclick="loadRecepts()">Laat recepten zien</button>
 
-        <button type="button" class="btn btn-success" onclick="createRecept()">Opslaan</button> -->
-<button onclick="loadRecepts()">Toon recepten</button>
-<div id="divjepython"></div>
+  <button onclick="loadRecepts()">Verwijderen</button>
+  <button onclick="loadRecepts()">Bewerken</button>
 
-<br>
+  <div class="table">
+    <label for="id">ReceptID:</label>
+    <input type="text" id="id" name="id" placeholder="Vul ReceptID in."><br><br>
+    <button type = "submit" onclick="showUpdateRecipe()">Laad recept</button>
+    <br><br>
+  </div>
 
-<!-- <button type="button" class="btn btn-success" onclick="toon_allereceptenpython()">Toon recepten python</button>
-<div id="divjepython"></div> -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>       
-    <script>
-        function toon_allerecepten()
-        {
-          fetch("https://localhost:7042/api/Recepten")
-          .then(pullrecepts => pullrecepts.json()) 
-          .then(r => abc(r))
-        }
+  <br>
 
-        function ophalenReceptData(data)
+  <div id="divjepython"></div>      
+    
+  <script>
+    function toon_allerecepten() {
+      fetch("https://yc2304csharp.azurewebsites.net")
+        .then(pullrecepts => pullrecepts.json())
+        .then(r => ophalenReceptData(r)); // Verander de naam van de functie die wordt aangeroepen naar ophalenReceptData
+    }
 
-        {         
-          for (let i = 0; i < data.length; i++){
-            document.getElementById("divjepython").innerHTML += data[i].recipeID;
-            document.getElementById("divjepython").innerHTML += data[i].prepTime +"<br>";
+    function ophalenReceptData(data) {
+      for (let i = 0; i < data.length; i++) {
+        document.getElementById("divjepython").innerHTML += data[i].recipeID;
+        document.getElementById("divjepython").innerHTML += data[i].prepTime + "<br>";
+      }
+    }
+
+    function toon_allereceptenpython() {
+      fetch("https://yc2304csharp.azurewebsites.net")
+        .then(kukeleku => kukeleku.json())
+        .then(d => def(d)); // Verander de naam van de functie die wordt aangeroepen naar def
+    }
+
+    function def(data) {
+      document.getElementById("divjepython").innerHTML = data.recipe_title[0];
+    }
+
+    function loadRecepts() {
+      fetch("https://yc2304csharp.azurewebsites.net")
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+
+          let tableHtml = '';
+
+          data.forEach(recept => {
+            tableHtml += `
+              <tr>
+                <td>${recept.recipeID}</td>
+                <td>${recept.recipeTitle}</td>
+                <td>${recept.userId}</td>
+                <td>${recept.prepTime}</td>
+                <td>${recept.prepText}</td>
+                <td>${recept.cookAttireId}</td>
+                <td>${recept.bbqId}</td>
+                <td>${recept.rating}</td>
+                <td>${recept.foto}</td>
+                <td>${recept.intro}</td>
+                <td>${recept.dateCreate}</td>
+              </tr>
+            `;
+          });
+
+          document.getElementById('recepts-table').innerHTML = tableHtml;
+        });
+    }
+
+    loadRecepts();
+
+
+        // FILL RECIPE FORM
+  function showUpdateRecipe() {
+    // Haal het formulier op
+    var receptID = parseInt(document.getElementById("id").value);
+    var adjustedReceptID = receptID - 1; // Verminder userId met 1
+
+      console.log(adjustedReceptID);
+
+    var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function (){
+      if (this.readyState == 4 && this.status == 200) { var response = JSON.parse(xhttp.responseText);
+        console.log(response[adjustedReceptID]) }
+
+        var geladenRecept = response[adjustedReceptID]
+      //  console.log(typeof geladenRecept)
+        Object.entries(geladenRecept).forEach(element => {
+        const [key, value]=element;
+        console.log(key,value);
+          try {
+            document.getElementById(key + "-input").value = value;
+            console.log(element);
+          } catch (error) {
+            console.log(error);
           }
-        }
-        
-        function toon_allereceptenpython() {
-          fetch("https://localhost:7042/api/Recepten")
-          .then(kukeleku => kukeleku.json()) 
-          .then(d => def(d))
-        }
+        });
+      };
+      xhttp.open("GET", "https://yc2304csharp.azurewebsites.net", true);
+        xhttp.send();
+    var recipeForm = document.getElementById("UpdateRecipeTable");
+    UpdateRecipeTable.style.display = "block";
 
-        function def(data) {
-          
-            document.getElementById("divjepython").innerHTML = data.recipe_title[0];
-            
-            //console.log(data);
-       
-        }
+    // myFunction();
+  }
 
-/*
-       function createRecept() {
-            // Invoer velden uitlezen
-            let nameInvoer = document.getElementById('recipeTitle-input').value;
-            let prepTimeInvoer = document.getElementById('prepTime-input').value;
-            let prepTextInvoer = document.getElementById('prepText-input').value; 
-            //let mealTypeInvoer = document.getElementById('mealtype-input').value; 
-            let introInvoer = document.getElementById('intro-input').value; 
-            let fotoInvoer = document.getElementById('foto-input').value; 
-            let bbqIdInvoer = document.getElementById('bbqId-input').value; 
-            let cookAttireIdInvoer = document.getElementById('cookAttireId-input').value;
-            let ratingInvoer = document.getElementById('rating-input').value; 
-            let userIdInvoer = document.getElementById('userId-input').value; 
-            let dateCreateInvoer = document.getElementById('dateCreate-input').value; 
-            //let dateEditedInvoer = document.getElementById('dateedited-input').value;  
+  </script>
 
-            // Maak een recept object in javascript
-            let newRecept = {
-                recipeID: nameInvoer,
-                prepTime: prepTimeInvoer,
-                prepText: prepTextInvoer,
-                //mealType: mealTypeInvoer,
-                intro: introInvoer,
-                foto: fotoInvoer,
-                bbqId: bbqIdInvoer,
-                cookAttireId: cookAttireIdInvoer,
-                userId: userIdInvoer,
-                dateCreate: dateCreateInvoer,
-                //dateEdited: dateEditedInvoer
-            }
-
-//   newRecept=`{
-//   "recipeID": "1",
-//   "userId": "1",
-//   "prepTime": 1,
-//   "prepText": "1",
-//   "cookAttireId":1,
-//   "bbqId": 1,
-//   "mealType": 1,
-//   "isVegan": true,
-//   "rating": 1,
-//   "foto": "1",
-//   "intro": "1",
-//   "diet": 1,
-//   "dateCreate": "1",
-//   "dateEdited": "1"
-// }
-// `
-
-console.log(JSON.stringify(newRecept));
-
-            fetch("https://localhost:7042/api/Recepten", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                
-                body: JSON.stringify(newRecept)
-            })
-            .then(response => {
-                alert('Is goedgegaan');
-                loadRecepts();
-            })
-            .catch(error => {
-                alert('Er is iets fouts gegaan');
-            });  
-        }
-      */
-     
-       function loadRecepts() {
-            fetch("https://localhost:7042/api/Recepten")
-            .then(res => res.json()) // = anonymous function
-            .then(data => {
-                console.log(data);
-
-                let tableHtml = '';
-
-                data.forEach(recept => {
-                    tableHtml += `
-                        <tr>
-                            <td>${recept.recipeID}</td>
-                            <td>${recept.recipeTitle}</td>
-                            <td>${recept.userId}</td>
-                            <td>${recept.prepTime}</td>
-                            <td>${recept.prepText}</td>
-                            <td>${recept.cookAttireId}</td>
-                            <td>${recept.bbqId}</td>
-                            <td>${recept.rating}</td>
-                            <td>${recept.foto}</td>
-                            <td>${recept.intro}</td>
-                            <td>${recept.dateCreate}</td>
-                        </tr>
-                    `
-                });
-
-                document.getElementById('recepts-table').innerHTML = tableHtml;
-            })
-        }
-
-        loadRecepts();
-
-</script>
 </body>
 </html>
+
+Een invoer vuld met de user id 
+
+Wacht op Charp API
