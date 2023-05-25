@@ -105,7 +105,7 @@
     }
 
     function toon_allereceptenpython() {
-      fetch("https://yc2304csharp.azurewebsites.net")
+      fetch("https://yc2304pythonbackend.azurewebsites.net/")
         .then(kukeleku => kukeleku.json())
         .then(d => def(d)); // Verander de naam van de functie die wordt aangeroepen naar def
     }
@@ -115,7 +115,7 @@
     }
 
     function loadRecepts() {
-      fetch("https://yc2304csharp.azurewebsites.net")
+      fetch("https://yc2304pythonbackend.azurewebsites.net/recipes")
         .then(res => res.json())
         .then(data => {
           console.log(data);
@@ -123,21 +123,22 @@
           let tableHtml = '';
 
           data.forEach(recept => {
-            tableHtml += `
-              <tr>
-                <td>${recept.recipeID}</td>
-                <td>${recept.recipeTitle}</td>
-                <td>${recept.userId}</td>
-                <td>${recept.prepTime}</td>
-                <td>${recept.prepText}</td>
-                <td>${recept.cookAttireId}</td>
-                <td>${recept.bbqId}</td>
-                <td>${recept.rating}</td>
-                <td>${recept.foto}</td>
-                <td>${recept.intro}</td>
-                <td>${recept.dateCreate}</td>
-              </tr>
-            `;
+            if (data[1] == document.getElementById("id").value){
+              tableHtml += `
+                <tr>
+                  <td>${recept.recipeID}</td>
+                  <td>${recept.recipeTitle}</td>
+                  <td>${recept.userId}</td>
+                  <td>${recept.prepTime}</td>
+                  <td>${recept.prepText}</td>
+                  <td>${recept.cookAttireId}</td>
+                  <td>${recept.bbqId}</td>
+                  <td>${recept.rating}</td>
+                  <td>${recept.foto}</td>
+                  <td>${recept.intro}</td>
+                  <td>${recept.dateCreate}</td>
+                </tr>
+              `;}
           });
 
           document.getElementById('recepts-table').innerHTML = tableHtml;
@@ -173,7 +174,7 @@
           }
         });
       };
-      xhttp.open("GET", "https://yc2304csharp.azurewebsites.net", true);
+      xhttp.open("GET", "https://yc2304pythonbackend.azurewebsites.net/recipes", true);
         xhttp.send();
     var recipeForm = document.getElementById("UpdateRecipeTable");
     UpdateRecipeTable.style.display = "block";
