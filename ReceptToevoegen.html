@@ -141,7 +141,6 @@
             <textarea type="text" class="form-control" id="prepText-input" placeholder="Vul hier de instructies in..">
             </textarea>
           </div>
-          <button class="btn btn-success btn-sm extra-stap-knop" id="add-step-button" onclick="addStep()">+</button>
           <div id="input-container2">
             <label for="ingredienten-input" class="form-label">ingredienten</label>
             <input type="text" class="form-control ingevoerdeIngredienten"
@@ -183,6 +182,7 @@
         })
           .then(res => res.text())
           .then(d => verkrijgid(d))
+          .then(r => alert("Recept aangemaakt!"));
       }
 
       function verkrijgid(recept) {
