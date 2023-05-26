@@ -72,13 +72,13 @@
         .sidebar {
             height: 110%;
             width: 200px;
-            position: absolute;
+            position: fixed;
             opacity: 100%;
             left: 0;
             top: 0;
             padding-top: 40px;
             background-color: 1, 0, 0, 0.7;
-            margin-top: 1300px;
+            margin-top: 100px;
             overflow: auto;
             z-index: 0;
         }
@@ -185,17 +185,18 @@
 
     </div>
 
-    <div id="headers1" class="recipe-grid" style="text-align: right;">
-        <h2></h2><h1>BBQ Recepten</h1>
-    </div>
 
-    <div id="headers2" class="recipe-grid" style="text-align: right;">
-
-        <h2></h2><h2 style="text-align:center"></h2style>Eigen Recepten</h2>
-
-    </div>
 
     <div class="wrapper">
+        <div id="headers1" class="recipe-grid" style="text-align: right;">
+            <h2></h2><h1>BBQ Recepten</h1>
+        </div>
+    
+        <div id="headers2" class="recipe-grid" style="text-align: right;">
+    
+            <h2></h2><h2 style="text-align:center"></h2style>Eigen Recepten</h2>
+    
+        </div>
         <div class="sidebar">
             <div>
                 <form id="form1">
@@ -330,7 +331,7 @@
             //console.log(typeof jsonData[i]["3"])
             //console.log(filter2)
             console.log(i)
-                cardc.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id, 2)">`+i+`
+                cardc.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id, 2)">
                     <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="imagec`+ i + `" class="thumbnail" width="200px" height="200px" style="border-radius:50 px">
@@ -417,7 +418,7 @@
             //console.log(typeof jsonData[i]["3"])
             //console.log(filter2)
             if (jsonData[i]["6"] == bbq && jsonData[i]["7"] >= filter && jsonData[i]["3"] <= filter2 && jsonData[i]["4"].includes(ingred) && jsonData[i]["10"] == diet) {
-                card.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id, 1)">`+i+`
+                card.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display:block; width:400px; border-radius:50px" onclick="localStorageId(this.id, 1)">
                     <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px" style="border-radius:50 px">
@@ -485,7 +486,7 @@
 
 
             if (title.toLowerCase().includes(zoekterm.toLowerCase())) {
-                card.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display: block; width:400px border-radius:50px" onclick="localStorageId(this.id, 1)">`+i+`
+                card.innerHTML += `<span id="card` + i + `" value="` + i + `" class="input-group-text"  style="background-color: darkgrey; display: block; width:400px border-radius:50px" onclick="localStorageId(this.id, 1)">
                     <div id="prevId` + i + `" value="prevId` + i + `" class="video-preview">
                     <div class="thumbnail-row">
                     <img id="image`+ i + `" class="thumbnail" width="200px" height="200px" style="border-radius:50 px">

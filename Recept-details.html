@@ -289,13 +289,13 @@
               if(i == 3) {
                 value = value.replace("PT", "")             
                 value = value.replace("M", "")
-                document.getElementById(key + "-input").value = value;
+                document.getElementById(i + "-input").value = value[i];
               }
 
               if(i == 1) {
                 value = value.replaceAll("$", "'")             
                 //value = value.replace("M", "")
-                document.getElementById(key + "-input").value = value;
+                document.getElementById(i + "-input").value = value[i];
               }
 
               if(i == 4) {
@@ -304,29 +304,29 @@
                 value = value.replaceAll('@', ',')
                 value = value.replaceAll("&#39;", "'")
                 console.log(value)
-                document.getElementById(key + "-input").value = value;
+                document.getElementById(i + "-input").value = value[i];
               }
 
               if(i == 9) {
                 value = value.replace(/["]/g, '')
                 value = value.replaceAll("$", "'")             
                 value = value.replaceAll("@", ",")
-                document.getElementById(key + "-input").value = value;
+                document.getElementById(key + "-input").value = value[i];
               }
               if(i == 6) {
-                document.getElementById(key + "-input").value = "Gas";
+                document.getElementById(i + "-input").value = "Gas";
               }
 
               if (i == 8) {
-                value = value.replace(/["]/g, '')
+                //value = value.replace(/["]/g, '')
                 console.log(value)
-                document.getElementById(key + "-input").src = value          
+                document.getElementById(i + "-input").src = value[i];          
               }
 
               if (i == 11) {
-                var date = new Date(value)
+                var date = new Date(value[i])
                 //console.log(value)
-                document.getElementById(key + "-input").value = date;          
+                document.getElementById(i + "-input").value = date;          
               }
             }
             catch (error) {
